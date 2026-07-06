@@ -84,3 +84,63 @@ export const dreamDureTypes = [
     checklist: ["온라인 학습 환경 준비", "과제와 평가 일정 확인", "자기주도 학습 가능성 점검"],
   },
 ];
+
+export interface DreamDureSubject {
+  id: string;
+  category: string;
+  type: "거점형" | "밴드형" | "온라인형";
+  subjects: string[];
+  fit: string;
+  note: string;
+}
+
+export const dreamDureSubjects: DreamDureSubject[] = [
+  {
+    id: "advanced-science",
+    category: "심화 과학",
+    type: "거점형",
+    subjects: ["고급 물리학", "고급 화학", "고급 생명과학", "고급 지구과학"],
+    fit: "자연·공학·의약학 계열을 희망하며 본교 과학 선택과목 이후 더 깊은 탐구가 필요한 학생",
+    note: "실험실, 기자재, 담당 교사 여건에 따라 개설 학교와 수업 요일이 달라질 수 있습니다.",
+  },
+  {
+    id: "science-lab",
+    category: "과학 실험·탐구",
+    type: "밴드형",
+    subjects: ["물리학 실험", "화학 실험", "생명과학 실험", "과학과제 연구"],
+    fit: "탐구 보고서, 실험 설계, 연구 활동을 진로 기록과 연결하고 싶은 학생",
+    note: "수행평가 비중과 실험 안전교육 여부를 신청 전에 확인합니다.",
+  },
+  {
+    id: "data-ai",
+    category: "정보·AI",
+    type: "온라인형",
+    subjects: ["빅데이터 분석", "프로그래밍", "인공지능 수학", "데이터 과학 심화"],
+    fit: "소프트웨어, 데이터, AI, 산업공학, 경영정보 계열에 관심 있는 학생",
+    note: "온라인 과제 제출, 실습 환경, 개인 노트북 사용 가능 여부를 점검합니다.",
+  },
+  {
+    id: "international-language",
+    category: "국제·외국어",
+    type: "거점형",
+    subjects: ["국제 정치", "국제 경제", "스페인어", "프랑스어"],
+    fit: "국제학, 외교, 통상, 언어문화 계열을 희망하는 학생",
+    note: "제2외국어 과목은 수준별 편성 여부와 이전 학습 경험을 상담해야 합니다.",
+  },
+  {
+    id: "arts-media",
+    category: "예술·미디어",
+    type: "밴드형",
+    subjects: ["영상 제작", "매체 미술", "연극", "공연 실습"],
+    fit: "디자인, 영상, 방송, 공연예술, 문화콘텐츠 계열에 관심 있는 학생",
+    note: "실기 중심 과목은 포트폴리오 준비 방식과 출석 장소를 함께 확인합니다.",
+  },
+  {
+    id: "liberal-studies",
+    category: "인문·사회 융합",
+    type: "온라인형",
+    subjects: ["현대문학 감상", "사회과제 연구", "교육학", "철학"],
+    fit: "본교 과목과 별도로 토론, 글쓰기, 사회 쟁점 탐구를 확장하고 싶은 학생",
+    note: "희망 학과의 권장과목과 직접 관련되는지 담임·교과 선생님과 확인합니다.",
+  },
+];

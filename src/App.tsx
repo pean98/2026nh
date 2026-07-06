@@ -15,7 +15,7 @@ import {
   X,
 } from "lucide-react";
 import { keywords, selectionTypes, subjectGroups, subjects, tracks } from "./data/subjects";
-import { admissionRecommendations, dreamDureTypes } from "./data/admissions";
+import { admissionRecommendations, dreamDureSubjects, dreamDureTypes } from "./data/admissions";
 import type { Grade, SelectionType, SemesterAssignments, SemesterId, Subject, SubjectGroup, Track } from "./types";
 import {
   calculateCredits,
@@ -1029,6 +1029,39 @@ function DreamDureView({ setView }: { setView: (view: View) => void }) {
             </ul>
           </article>
         ))}
+      </div>
+      <div className="dream-courses">
+        <div className="section-heading compact">
+          <span className="eyebrow">Open Course Guide</span>
+          <h2>꿈두레에서 확인해 볼 대표 개설과목</h2>
+          <p>아래 과목은 탐색용 예시입니다. 실제 개설 여부, 수업 방식, 신청 기간은 학기별 공지와 상담을 통해 확인합니다.</p>
+        </div>
+        <div className="dream-course-grid">
+          {dreamDureSubjects.map((item) => (
+            <article className="dream-course-card" key={item.id}>
+              <div className="dream-course-head">
+                <span>{item.type}</span>
+                <h3>{item.category}</h3>
+              </div>
+              <div className="course-chip-row">
+                {item.subjects.map((subject) => (
+                  <span key={subject}>{subject}</span>
+                ))}
+              </div>
+              <p>{item.fit}</p>
+              <small>{item.note}</small>
+            </article>
+          ))}
+        </div>
+      </div>
+      <div className="dream-consult">
+        <h2>상담 때 확인할 것</h2>
+        <ul className="check-list">
+          <li>본교 과목으로 대체 가능한지 먼저 확인합니다.</li>
+          <li>공동교육과정 과목이 생활기록부에 어떤 방식으로 기재되는지 확인합니다.</li>
+          <li>정규 시간표, 방과후 시간, 이동 거리, 온라인 접속 환경을 함께 점검합니다.</li>
+          <li>신청 인원 초과 시 선발 기준이 있는지 확인합니다.</li>
+        </ul>
       </div>
       <div className="dream-steps">
         <h2>신청 전 확인 흐름</h2>

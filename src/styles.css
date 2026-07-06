@@ -783,8 +783,16 @@ p {
   gap: 14px;
 }
 
+.dream-course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+}
+
 .recommendation-card,
 .dream-card,
+.dream-course-card,
+.dream-consult,
 .dream-steps,
 .comparison-panel,
 .comparison-empty {
@@ -796,6 +804,8 @@ p {
 
 .recommendation-card,
 .dream-card,
+.dream-course-card,
+.dream-consult,
 .dream-steps,
 .comparison-panel,
 .comparison-empty {
@@ -1048,6 +1058,63 @@ p {
 
 .dream-card h2 {
   color: #154c54;
+}
+
+.dream-courses {
+  display: grid;
+  gap: 14px;
+}
+
+.dream-course-card {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+
+.dream-course-head {
+  display: grid;
+  gap: 6px;
+}
+
+.dream-course-head span {
+  width: fit-content;
+  border-radius: 999px;
+  padding: 5px 9px;
+  background: #edf3ed;
+  color: #154c54;
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.dream-course-head h3,
+.dream-consult h2 {
+  margin: 0;
+  color: #17202a;
+}
+
+.course-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.course-chip-row span {
+  border-radius: 999px;
+  padding: 7px 10px;
+  background: #fff1c2;
+  color: #5f4706;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.dream-course-card p {
+  margin: 0;
+  color: #3f5148;
+}
+
+.dream-course-card small {
+  color: #66736a;
+  line-height: 1.55;
 }
 
 .dream-steps {
