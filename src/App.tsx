@@ -1333,6 +1333,16 @@ function ResourcesView() {
           <strong>2학년 과목 선택 워크북</strong>
           <span>PDF 열기</span>
         </a>
+        <a href="./2026학년도 입학생 교육과정편성표.pdf" target="_blank" rel="noreferrer">
+          <BookOpen size={24} />
+          <strong>2026학년도 입학생 교육과정편성표</strong>
+          <span>운영학점 확인</span>
+        </a>
+        <a href="./2025학년도 입학생 교육과정편성표.pdf" target="_blank" rel="noreferrer">
+          <BookOpen size={24} />
+          <strong>2025학년도 입학생 교육과정편성표</strong>
+          <span>운영학점 확인</span>
+        </a>
         <a href="https://nh.icehs.kr" target="_blank" rel="noreferrer">
           <GraduationCap size={24} />
           <strong>인천논현고 홈페이지</strong>

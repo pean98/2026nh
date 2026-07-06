@@ -66,6 +66,16 @@ const semesterBySubject: Record<string, Subject["availableSemesters"]> = {
   "논술": ["3-1", "3-2"],
 };
 
+const creditBySubject: Record<string, number> = {
+  "음악 연주와 창작": 2,
+  "음악과 미디어": 2,
+  "미술 창작": 2,
+  "미술과 매체": 2,
+  "생태와 환경": 2,
+  "인간과 심리": 2,
+  "논술": 2,
+};
+
 const choiceGroupBySubject: Record<string, { choiceGroup: string; choiceLimit: number }> = {};
 
 [
@@ -215,8 +225,8 @@ const subject = (
   selectionType,
   availableSemesters: semesterBySubject[name] ?? (grade === 1 ? ["2-1", "2-2"] : ["3-1", "3-2"]),
   ...choiceGroupBySubject[name],
-  credits,
-  creditLabel: group === "교양" ? "2~4학점" : "3~5학점",
+  credits: creditBySubject[name] ?? 3,
+  creditLabel: `${creditBySubject[name] ?? 3}학점`,
   evaluation,
   csat,
   oneLine,
