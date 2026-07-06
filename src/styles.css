@@ -42,7 +42,7 @@ button {
   z-index: 20;
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 14px;
   height: 72px;
   padding: 0 28px;
   border-bottom: 1px solid #dfe5dd;
@@ -53,6 +53,7 @@ button {
 .brand {
   display: inline-flex;
   align-items: center;
+  flex-shrink: 0;
   gap: 12px;
   padding: 0;
   border: 0;
@@ -87,15 +88,20 @@ button {
   align-items: center;
   gap: 4px;
   margin-left: auto;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: thin;
 }
 
 .desktop-nav button,
 .mobile-menu-panel button {
+  flex-shrink: 0;
   border: 0;
   border-radius: 999px;
-  padding: 10px 14px;
+  padding: 10px 12px;
   background: transparent;
   color: #4a574f;
+  white-space: nowrap;
 }
 
 .desktop-nav button.active,
@@ -1325,6 +1331,15 @@ p {
 }
 
 @media (max-width: 1180px) {
+  .desktop-nav {
+    display: none;
+  }
+
+  .mobile-menu-button {
+    display: inline-grid;
+    place-items: center;
+  }
+
   .subjects-layout {
     grid-template-columns: 240px minmax(0, 1fr);
   }
@@ -1339,15 +1354,6 @@ p {
 @media (max-width: 900px) {
   main {
     padding: 18px;
-  }
-
-  .desktop-nav {
-    display: none;
-  }
-
-  .mobile-menu-button {
-    display: inline-grid;
-    place-items: center;
   }
 
   .topbar {
