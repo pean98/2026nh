@@ -1,0 +1,15 @@
+node_modules/
+.npm-cache/
+.tools/
+dist/
+*.log
+*.tsbuildinfo
+*.zip
+
+# Local extraction helpers and copied source documents
+extract-hwp-text.mjs
+extract-pdf-text.mjs
+*.hwp
+
+# Keep PDFs through public/ and docs/ only.
+/*.pdf
