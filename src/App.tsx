@@ -67,6 +67,7 @@ function App() {
   const [grade, setGrade] = useState<Grade | "all">("all");
   const [group, setGroup] = useState<SubjectGroup | "all">("all");
   const [selectionType, setSelectionType] = useState<SelectionType | "all">("all");
+  const [semesterFilter, setSemesterFilter] = useState<SemesterId | "all">("all");
   const [track, setTrack] = useState<Track | "all">("all");
   const [activeKeyword, setActiveKeyword] = useState<string>("all");
   const [selectedSubject, setSelectedSubject] = useState<Subject>(subjects[0]);
@@ -111,6 +112,7 @@ function App() {
         subject.oneLine,
         subject.group,
         subject.selectionType,
+        subject.availableSemesters.join(" "),
         ...subject.keywords,
         ...subject.tracks,
       ]
@@ -122,11 +124,12 @@ function App() {
         (grade === "all" || subject.grade === grade) &&
         (group === "all" || subject.group === group) &&
         (selectionType === "all" || subject.selectionType === selectionType) &&
+        (semesterFilter === "all" || subject.availableSemesters.includes(semesterFilter)) &&
         (track === "all" || subject.tracks.includes(track)) &&
         (activeKeyword === "all" || subject.keywords.includes(activeKeyword))
       );
     });
-  }, [activeKeyword, grade, group, query, selectionType, track]);
+  }, [activeKeyword, grade, group, query, selectionType, semesterFilter, track]);
 
   const toggleSubject = (subject: Subject) => {
     setSelectedIds((current) => {
@@ -157,6 +160,7 @@ function App() {
     setGrade("all");
     setGroup("all");
     setSelectionType("all");
+    setSemesterFilter("all");
     setTrack("all");
     setActiveKeyword("all");
   };
@@ -241,6 +245,8 @@ function App() {
             setGroup={setGroup}
             setQuery={setQuery}
             setSelectionType={setSelectionType}
+            semesterFilter={semesterFilter}
+            setSemesterFilter={setSemesterFilter}
             setTrack={setTrack}
             toggleSubject={toggleSubject}
             track={track}
@@ -452,11 +458,13 @@ function SubjectsView(props: {
   selectedIds: string[];
   selectedSubject: Subject;
   selectionType: SelectionType | "all";
+  semesterFilter: SemesterId | "all";
   setActiveKeyword: (keyword: string) => void;
   setGrade: (grade: Grade | "all") => void;
   setGroup: (group: SubjectGroup | "all") => void;
   setQuery: (query: string) => void;
   setSelectionType: (selectionType: SelectionType | "all") => void;
+  setSemesterFilter: (semester: SemesterId | "all") => void;
   setTrack: (track: Track | "all") => void;
   toggleSubject: (subject: Subject) => void;
   track: Track | "all";
@@ -502,6 +510,20 @@ function SubjectsView(props: {
               {item}
             </option>
           ))}
+        </FilterSelect>
+        <FilterSelect
+          label="개설 학기"
+          value={props.semesterFilter}
+          onChange={(value) => props.setSemesterFilter(value as SemesterId | "all")}
+        >
+          <option value="all">전체</option>
+          {semesters
+            .filter((semester) => semester.id !== "unassigned")
+            .map((semester) => (
+              <option key={semester.id} value={semester.id}>
+                {semester.label}
+              </option>
+            ))}
         </FilterSelect>
         <FilterSelect label="관심 계열" value={props.track} onChange={(value) => props.setTrack(value as Track | "all")}>
           <option value="all">전체</option>
@@ -601,7 +623,8 @@ function SubjectCard({
         <div className="card-meta">
           <span>{gradeLabels[subject.grade]}</span>
           <span>{subject.group}</span>
-          <span>{subject.selectionType}</span>
+        <span>{subject.selectionType}</span>
+          <span>{subject.availableSemesters.map((semester) => semesters.find((item) => item.id === semester)?.shortLabel).join(", ")}</span>
         </div>
         <h3>{subject.name}</h3>
         <p>{subject.oneLine}</p>
@@ -647,6 +670,7 @@ function SubjectDetail({
         <span>수능<strong>{subject.csat ? "출제" : "미출제"}</strong></span>
         <span>평가<strong>{subject.evaluation}</strong></span>
         <span>계열<strong>{subject.tracks.join(" · ")}</strong></span>
+        <span>개설 학기<strong>{subject.availableSemesters.map((semester) => semesters.find((item) => item.id === semester)?.shortLabel).join(" · ")}</strong></span>
       </div>
       <div className="detail-section">
         <h3>주요 키워드</h3>
@@ -926,7 +950,14 @@ function SemesterBoard({
                       value={semesterAssignments[subject.id] ?? "unassigned"}
                       onChange={(event) => assignSemester(subject.id, event.target.value as SemesterId)}
                     >
-                      {semesters.map((option) => (
+                      {semesters
+                        .filter(
+                          (option) =>
+                            option.id === "unassigned" ||
+                            subject.availableSemesters.includes(option.id) ||
+                            option.id === semesterAssignments[subject.id],
+                        )
+                        .map((option) => (
                         <option key={option.id} value={option.id}>
                           {option.label}
                         </option>

@@ -99,6 +99,16 @@ export const createSemesterWarnings = (selected: Subject[], assignments: Semeste
       }
     });
 
+  selected.forEach((subject) => {
+    const assigned = assignments[subject.id] ?? "unassigned";
+    if (assigned !== "unassigned" && !subject.availableSemesters.includes(assigned)) {
+      warnings.push({
+        type: "danger",
+        message: `${subject.name}은 ${semesters.find((semester) => semester.id === assigned)?.label}에 개설된 과목으로 표시되어 있지 않습니다.`,
+      });
+    }
+  });
+
   return warnings;
 };
 

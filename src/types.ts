@@ -44,6 +44,7 @@ export interface Subject {
   name: string;
   group: SubjectGroup;
   selectionType: SelectionType;
+  availableSemesters: SemesterId[];
   credits: number;
   creditLabel: string;
   evaluation: string;

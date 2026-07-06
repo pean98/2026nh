@@ -63,6 +63,7 @@ const subject = (
   name,
   group,
   selectionType,
+  availableSemesters: grade === 1 ? ["2-1", "2-2"] : ["3-1", "3-2"],
   credits,
   creditLabel: group === "교양" ? "2~4학점" : "3~5학점",
   evaluation,
