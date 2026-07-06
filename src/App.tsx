@@ -60,6 +60,39 @@ const guideSteps = [
   { title: "학업 계획 관리", text: "선택 이유와 학습 계획을 남기고 필요하면 보완합니다." },
 ];
 
+const courseTypes = [
+  { title: "공통 과목", text: "기초소양과 기본학력을 보장하기 위한 과목으로 주로 1학년에 이수합니다." },
+  { title: "일반 선택", text: "교과별 주요 학습 내용을 이해하고 탐구하는 기본 선택 과목입니다." },
+  { title: "진로 선택", text: "교과별 심화 학습과 진로 관련 역량을 키우는 과목입니다." },
+  { title: "융합 선택", text: "교과 안팎의 주제를 연결하고 실생활 문제를 응용해 보는 과목입니다." },
+];
+
+const evaluationTypes = [
+  { title: "보통 교과", text: "원점수, 성취도, 석차등급, 성취도별 분포비율, 과목평균, 수강자수가 기재됩니다." },
+  { title: "사회·과학 융합 선택", text: "성취도와 통계정보가 중심이며, 석차등급 기재 방식은 과목별로 확인합니다." },
+  { title: "체육·예술 일부 과목", text: "성취도 3단계로 평가되는 과목이 있으므로 과목별 평가 정보를 확인합니다." },
+  { title: "교양 과목", text: "주로 P 이수 여부 중심으로 기재됩니다." },
+];
+
+const admissionFactors = [
+  { title: "학업역량", text: "이수한 교과의 성취수준, 학업태도, 탐구력을 종합적으로 봅니다." },
+  { title: "진로역량", text: "희망 전공과 관련된 과목을 선택하고 성취한 과정, 진로 탐색 경험을 봅니다." },
+  { title: "공동체역량", text: "협업, 소통, 나눔과 배려, 성실성, 규칙 준수, 리더십을 함께 살핍니다." },
+];
+
+const designGuide = [
+  { title: "나의 이해", text: "어떤 과목을 배울 때 즐거운지, 무엇을 잘하는지 먼저 정리합니다." },
+  { title: "과목·학과 탐색", text: "관심 학과의 요구 역량, 대학 권장과목, 졸업 후 진로를 함께 확인합니다." },
+  { title: "설계와 상담", text: "후보 과목을 담고 학점 기준, 위계 과목, 학교 개설 여부를 상담합니다." },
+  { title: "심화 학습", text: "선택 과목에서 해 보고 싶은 탐구 활동과 학업 계획을 구체화합니다." },
+];
+
+const audienceGuides = [
+  { title: "학생", text: "관심 키워드나 계열로 과목을 찾고, 후보 과목을 담아 학점 기준을 점검합니다." },
+  { title: "학부모", text: "고교학점제 기준, 성적 산출 방식, 대입과 과목 선택의 관계를 먼저 확인합니다." },
+  { title: "상담 전", text: "희망 진로, 고민 과목, 선택 이유를 메모해 담임·교과·진로 선생님과 상담합니다." },
+];
+
 function App() {
   const [view, setView] = useState<View>("dashboard");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -348,7 +381,7 @@ function Dashboard({
         <button type="button" onClick={() => setView("subjects")}>
           <LibraryBig size={24} />
           <strong>선택 과목 백과</strong>
-          <span>60개 과목을 필터와 태그로 탐색</span>
+          <span>62개 과목을 필터와 태그로 탐색</span>
         </button>
         <button type="button" onClick={() => setView("planner")}>
           <Calculator size={24} />
@@ -366,6 +399,22 @@ function Dashboard({
           <span>학교 미개설 과목 수강 방법 확인</span>
         </button>
       </div>
+
+      <section className="section-block">
+        <div className="section-heading">
+          <span className="eyebrow">Before You Choose</span>
+          <h2>과목 선택, 이렇게 시작하세요</h2>
+          <p>과목 선택은 단순히 시간표를 고르는 일이 아니라 진로 탐색, 대입 준비, 학업 계획을 함께 세우는 과정입니다.</p>
+        </div>
+        <div className="audience-grid">
+          {audienceGuides.map((item) => (
+            <article className="mini-info-card" key={item.title}>
+              <strong>{item.title}</strong>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
 
       <section className="section-block">
         <div className="section-heading">
@@ -397,7 +446,17 @@ function Guide() {
       <div className="page-title">
         <span className="eyebrow">Guide</span>
         <h1>고교학점제 한눈에 보기</h1>
-        <p>과목 선택 전 반드시 확인해야 할 기준만 짧게 정리했습니다.</p>
+        <p>과목 선택 전 학생과 학부모가 함께 확인해야 할 공통 내용을 정리했습니다.</p>
+      </div>
+      <div className="info-band">
+        <GraduationCap size={28} />
+        <div>
+          <strong>고교학점제란?</strong>
+          <p>
+            학생이 진로와 적성에 따라 과목을 선택하고, 이수 기준에 도달한 과목의 학점을 취득·누적하여
+            졸업하는 제도입니다. 과목 선택은 자신의 진로를 탐색하고 책임 있게 학업을 설계하는 과정입니다.
+          </p>
+        </div>
       </div>
       <div className="guide-grid">
         {guideSteps.map((step, index) => (
@@ -408,14 +467,19 @@ function Guide() {
           </div>
         ))}
       </div>
-      <div className="info-band">
-        <BookOpen size={28} />
-        <div>
-          <strong>2022 개정 교육과정 과목 구조</strong>
-          <p>
-            공통 과목은 기초소양과 기본학력을 보장하고, 선택 과목은 일반 선택·진로 선택·융합 선택으로
-            구분됩니다. 과목 선택은 진로 탐색과 대입 준비를 함께 보여주는 중요한 자료가 됩니다.
-          </p>
+      <div className="section-block flush">
+        <div className="section-heading compact">
+          <span className="eyebrow">Course Types</span>
+          <h2>2022 개정 교육과정 과목 구조</h2>
+          <p>공통 과목은 주로 1학년에, 선택 과목은 주로 2·3학년에 이수합니다.</p>
+        </div>
+        <div className="type-grid">
+          {courseTypes.map((item) => (
+            <article className="mini-info-card" key={item.title}>
+              <strong>{item.title}</strong>
+              <p>{item.text}</p>
+            </article>
+          ))}
         </div>
       </div>
       <div className="credit-layout">
@@ -429,13 +493,36 @@ function Guide() {
           </ul>
         </div>
         <div>
-          <h2>성적 산출 방식</h2>
+          <h2>필수 이수 학점</h2>
           <ul className="check-list">
-            <li>대부분 과목은 원점수, 성취도, 석차등급, 통계정보 기재</li>
-            <li>체육·예술 일부 과목은 성취도 3단계</li>
-            <li>교양 과목은 P 이수 여부 중심</li>
-            <li>사회·과학 융합 선택은 평가 정보가 과목별로 다를 수 있음</li>
+            <li>국어·수학·영어·사회는 각 8학점 이상</li>
+            <li>한국사는 6학점 이상</li>
+            <li>과학·체육·예술은 각 10학점 이상</li>
+            <li>기술·가정/정보/제2외국어/한문/교양은 총 16학점 이상</li>
           </ul>
+        </div>
+      </div>
+      <div className="notice-panel">
+        <strong>선택 전 꼭 확인하세요</strong>
+        <ul className="check-list">
+          <li>국어·수학·영어 교과군 이수학점 총합은 꿈두레, 온라인학교, 소인수 교육과정을 포함해 제한 기준을 넘을 수 없습니다.</li>
+          <li>Ⅰ·Ⅱ로 표시된 위계 과목은 일반적으로 Ⅰ을 먼저 이수한 뒤 Ⅱ를 선택해야 합니다.</li>
+          <li>신청 인원, 교사 수급, 학교 시설 여건에 따라 선택한 과목이 개설되지 않을 수 있습니다.</li>
+        </ul>
+      </div>
+      <div className="section-block flush">
+        <div className="section-heading compact">
+          <span className="eyebrow">Evaluation</span>
+          <h2>성적 산출 방식</h2>
+          <p>과목 유형에 따라 원점수, 성취도, 석차등급, 통계정보, P 이수 여부가 다르게 기재됩니다.</p>
+        </div>
+        <div className="type-grid">
+          {evaluationTypes.map((item) => (
+            <article className="mini-info-card" key={item.title}>
+              <strong>{item.title}</strong>
+              <p>{item.text}</p>
+            </article>
+          ))}
         </div>
       </div>
     </section>
@@ -737,6 +824,21 @@ function MatchingView({
         <h1>진로 및 대입 매칭</h1>
         <p>계열을 선택하면 관련 과목 흐름을 확인할 수 있습니다. 대학별 권장과목은 상담 참고 자료입니다.</p>
       </div>
+      <div className="match-panel">
+        <h2>대입에서 과목 선택을 보는 이유</h2>
+        <p className="muted-text">
+          대학은 학생이 희망 전공과 관련된 과목을 어떻게 선택하고, 그 과목에서 어떤 배움과 성장을 만들었는지를
+          진로역량의 중요한 근거로 봅니다. 권장과목은 합격 보증이 아니라 전공 탐색을 위한 안내 자료입니다.
+        </p>
+        <div className="admission-factor-grid">
+          {admissionFactors.map((item) => (
+            <article className="mini-info-card" key={item.title}>
+              <strong>{item.title}</strong>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
       <div className="track-grid">
         {tracks.map((item) => {
           const related = subjects.filter((subject) => subject.tracks.includes(item)).slice(0, 4);
@@ -849,7 +951,22 @@ function PlannerView({
       <div className="page-title">
         <span className="eyebrow">Planner</span>
         <h1>나만의 교육과정 설계</h1>
-        <p>관심 과목을 담아 학점 기준을 점검하고 상담 질문을 정리합니다.</p>
+        <p>관심 과목을 담아 학점 기준을 점검하고, 학업 계획서와 상담 질문을 함께 준비합니다.</p>
+      </div>
+      <div className="section-block flush">
+        <div className="section-heading compact">
+          <span className="eyebrow">Academic Plan</span>
+          <h2>성공적인 교육과정 설계 흐름</h2>
+          <p>워크북의 학업 설계 흐름을 따라 나를 이해하고, 과목을 탐색하고, 상담을 거쳐 계획을 보완합니다.</p>
+        </div>
+        <div className="type-grid">
+          {designGuide.map((item) => (
+            <article className="mini-info-card" key={item.title}>
+              <strong>{item.title}</strong>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
       </div>
       <div className="planner-layout">
         <div className="planner-main">
@@ -888,6 +1005,7 @@ function PlannerView({
         </div>
         <aside className="memo-panel">
           <h2>상담 질문</h2>
+          <p className="muted-text">선택 과목의 이수 기준은 2/3 이상 출석입니다. 선택 이유와 심화 학습 계획까지 함께 적어 보세요.</p>
           <textarea
             placeholder="희망 진로, 고민 중인 과목, 선생님께 묻고 싶은 내용을 적어보세요."
             value={memo}
@@ -1098,7 +1216,7 @@ function ResourcesView() {
       <div className="page-title">
         <span className="eyebrow">Resources</span>
         <h1>자료실</h1>
-        <p>원본 워크북과 상담 자료를 확인합니다.</p>
+        <p>원본 워크북과 상담 자료를 확인합니다. 1~23쪽 공통 안내에는 고교학점제, 과목 선택 절차, 대입 연계, 학업 설계, 꿈두레 안내가 담겨 있습니다.</p>
       </div>
       <div className="resource-grid">
         <a href="./2026 교육과정박람회(인천논현고)_1학년.pdf" target="_blank" rel="noreferrer">

@@ -308,6 +308,9 @@ p {
 .stat-grid,
 .quick-grid,
 .guide-grid,
+.audience-grid,
+.type-grid,
+.admission-factor-grid,
 .resource-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -327,6 +330,8 @@ p {
 .section-block,
 .info-band,
 .credit-layout,
+.mini-info-card,
+.notice-panel,
 .subject-card {
   border: 1px solid #dfe5dd;
   border-radius: 12px;
@@ -386,6 +391,10 @@ p {
 .section-block,
 .content-page {
   padding: 28px;
+}
+
+.section-block.flush {
+  padding: 24px;
 }
 
 .section-heading h2,
@@ -448,6 +457,15 @@ p {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+.audience-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.type-grid,
+.admission-factor-grid {
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+
 .guide-card {
   padding: 22px;
 }
@@ -474,6 +492,35 @@ p {
 
 .credit-layout {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.mini-info-card {
+  padding: 18px;
+}
+
+.mini-info-card strong {
+  display: block;
+  margin-bottom: 8px;
+  color: #154c54;
+  font-size: 17px;
+}
+
+.mini-info-card p {
+  margin: 0;
+  color: #53645a;
+  font-size: 14px;
+}
+
+.notice-panel {
+  padding: 22px;
+  background: #fff8e6;
+  border-color: #efd58a;
+}
+
+.notice-panel > strong {
+  display: block;
+  margin-bottom: 10px;
+  color: #6b4b00;
 }
 
 .check-list {
@@ -1273,6 +1320,9 @@ p {
   .stat-grid,
   .quick-grid,
   .guide-grid,
+  .audience-grid,
+  .type-grid,
+  .admission-factor-grid,
   .resource-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1301,6 +1351,9 @@ p {
   .stat-grid,
   .quick-grid,
   .guide-grid,
+  .audience-grid,
+  .type-grid,
+  .admission-factor-grid,
   .resource-grid,
   .planner-stats {
     grid-template-columns: 1fr;
