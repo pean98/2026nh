@@ -1,5 +1,7 @@
 export type Grade = 1 | 2;
 
+export type SemesterId = "unassigned" | "2-1" | "2-2" | "3-1" | "3-2";
+
 export type SubjectGroup =
   | "국어"
   | "수학"
@@ -59,3 +61,5 @@ export interface PlanWarning {
   type: "info" | "warning" | "danger";
   message: string;
 }
+
+export type SemesterAssignments = Record<string, SemesterId>;

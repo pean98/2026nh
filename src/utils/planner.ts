@@ -1,4 +1,12 @@
-import type { PlanWarning, Subject } from "../types";
+import type { PlanWarning, SemesterAssignments, SemesterId, Subject } from "../types";
+
+export const semesters: Array<{ id: SemesterId; label: string; shortLabel: string }> = [
+  { id: "unassigned", label: "미배치", shortLabel: "미배치" },
+  { id: "2-1", label: "2학년 1학기", shortLabel: "2-1" },
+  { id: "2-2", label: "2학년 2학기", shortLabel: "2-2" },
+  { id: "3-1", label: "3학년 1학기", shortLabel: "3-1" },
+  { id: "3-2", label: "3학년 2학기", shortLabel: "3-2" },
+];
 
 export const calculateCredits = (selected: Subject[]) => {
   const total = selected.reduce((sum, subject) => sum + subject.credits, 0);
@@ -62,6 +70,38 @@ export const createWarnings = (selected: Subject[]): PlanWarning[] => {
   return warnings;
 };
 
+export const createSemesterWarnings = (selected: Subject[], assignments: SemesterAssignments): PlanWarning[] => {
+  const warnings: PlanWarning[] = [];
+  const unassigned = selected.filter((subject) => (assignments[subject.id] ?? "unassigned") === "unassigned");
+
+  if (unassigned.length > 0) {
+    warnings.push({
+      type: "warning",
+      message: `${unassigned.length}개 과목이 아직 학기에 배치되지 않았습니다.`,
+    });
+  }
+
+  semesters
+    .filter((semester) => semester.id !== "unassigned")
+    .forEach((semester) => {
+      const semesterSubjects = selected.filter((subject) => assignments[subject.id] === semester.id);
+      const credits = semesterSubjects.reduce((sum, subject) => sum + subject.credits, 0);
+      if (credits > 28) {
+        warnings.push({
+          type: "danger",
+          message: `${semester.label} 선택 학점이 ${credits}학점입니다. 한 학기 부담이 큰 편이라 상담이 필요합니다.`,
+        });
+      } else if (credits > 22) {
+        warnings.push({
+          type: "warning",
+          message: `${semester.label} 선택 학점이 ${credits}학점입니다. 수행평가와 시간표 부담을 확인하세요.`,
+        });
+      }
+    });
+
+  return warnings;
+};
+
 export const persistSelectedIds = (ids: string[]) => {
   window.localStorage.setItem("selectedSubjectIds", JSON.stringify(ids));
 };
@@ -72,5 +112,18 @@ export const loadSelectedIds = () => {
     return raw ? (JSON.parse(raw) as string[]) : [];
   } catch {
     return [];
+  }
+};
+
+export const persistSemesterAssignments = (assignments: SemesterAssignments) => {
+  window.localStorage.setItem("semesterAssignments", JSON.stringify(assignments));
+};
+
+export const loadSemesterAssignments = (): SemesterAssignments => {
+  try {
+    const raw = window.localStorage.getItem("semesterAssignments");
+    return raw ? (JSON.parse(raw) as SemesterAssignments) : {};
+  } catch {
+    return {};
   }
 };

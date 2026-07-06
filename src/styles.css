@@ -939,6 +939,60 @@ p {
   gap: 10px;
 }
 
+.semester-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.semester-column {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  min-height: 180px;
+  border: 1px solid #dfe5dd;
+  border-radius: 12px;
+  padding: 12px;
+  background: #fbfcfa;
+}
+
+.semester-column.unassigned {
+  background: #fff8ea;
+}
+
+.semester-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border-bottom: 1px solid #e5ebe4;
+  padding-bottom: 10px;
+}
+
+.semester-head strong {
+  color: #154c54;
+}
+
+.semester-head span {
+  color: #66736a;
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.semester-items {
+  display: grid;
+  gap: 10px;
+}
+
+.semester-empty {
+  margin: 0;
+  border: 1px dashed #cbd7cd;
+  border-radius: 10px;
+  padding: 18px 12px;
+  color: #748178;
+  text-align: center;
+}
+
 .comparison-empty,
 .comparison-panel {
   margin-top: 18px;
@@ -1011,18 +1065,37 @@ p {
 }
 
 .planner-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 12px;
   border: 1px solid #dfe5dd;
   border-radius: 10px;
   padding: 14px;
+  background: #fff;
 }
 
 .planner-item div {
   display: grid;
   gap: 4px;
+}
+
+.planner-item label {
+  display: grid;
+  gap: 5px;
+}
+
+.planner-item label span {
+  color: #66736a;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.planner-item select {
+  height: 38px;
+  border: 1px solid #d7dfd7;
+  border-radius: 9px;
+  padding: 0 9px;
+  background: #fff;
 }
 
 .empty-state {

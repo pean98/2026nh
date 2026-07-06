@@ -16,8 +16,17 @@ import {
 } from "lucide-react";
 import { keywords, selectionTypes, subjectGroups, subjects, tracks } from "./data/subjects";
 import { admissionRecommendations, dreamDureTypes } from "./data/admissions";
-import type { Grade, SelectionType, Subject, SubjectGroup, Track } from "./types";
-import { calculateCredits, createWarnings, loadSelectedIds, persistSelectedIds } from "./utils/planner";
+import type { Grade, SelectionType, SemesterAssignments, SemesterId, Subject, SubjectGroup, Track } from "./types";
+import {
+  calculateCredits,
+  createSemesterWarnings,
+  createWarnings,
+  loadSelectedIds,
+  loadSemesterAssignments,
+  persistSelectedIds,
+  persistSemesterAssignments,
+  semesters,
+} from "./utils/planner";
 
 type View = "dashboard" | "guide" | "subjects" | "matching" | "planner" | "dreamdure" | "resources";
 
@@ -62,16 +71,22 @@ function App() {
   const [activeKeyword, setActiveKeyword] = useState<string>("all");
   const [selectedSubject, setSelectedSubject] = useState<Subject>(subjects[0]);
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
+  const [semesterAssignments, setSemesterAssignments] = useState<SemesterAssignments>({});
   const [memo, setMemo] = useState("");
 
   useEffect(() => {
     setSelectedIds(loadSelectedIds());
+    setSemesterAssignments(loadSemesterAssignments());
     setMemo(window.localStorage.getItem("plannerMemo") ?? "");
   }, []);
 
   useEffect(() => {
     persistSelectedIds(selectedIds);
   }, [selectedIds]);
+
+  useEffect(() => {
+    persistSemesterAssignments(semesterAssignments);
+  }, [semesterAssignments]);
 
   useEffect(() => {
     window.localStorage.setItem("plannerMemo", memo);
@@ -83,7 +98,10 @@ function App() {
   );
 
   const planner = useMemo(() => calculateCredits(selectedSubjects), [selectedSubjects]);
-  const warnings = useMemo(() => createWarnings(selectedSubjects), [selectedSubjects]);
+  const warnings = useMemo(
+    () => [...createWarnings(selectedSubjects), ...createSemesterWarnings(selectedSubjects, semesterAssignments)],
+    [selectedSubjects, semesterAssignments],
+  );
 
   const filteredSubjects = useMemo(() => {
     const normalized = query.trim().toLowerCase();
@@ -111,9 +129,22 @@ function App() {
   }, [activeKeyword, grade, group, query, selectionType, track]);
 
   const toggleSubject = (subject: Subject) => {
-    setSelectedIds((current) =>
-      current.includes(subject.id) ? current.filter((id) => id !== subject.id) : [...current, subject.id],
-    );
+    setSelectedIds((current) => {
+      if (current.includes(subject.id)) {
+        setSemesterAssignments((assignments) => {
+          const next = { ...assignments };
+          delete next[subject.id];
+          return next;
+        });
+        return current.filter((id) => id !== subject.id);
+      }
+      setSemesterAssignments((assignments) => ({ ...assignments, [subject.id]: "unassigned" }));
+      return [...current, subject.id];
+    });
+  };
+
+  const assignSemester = (subjectId: string, semester: SemesterId) => {
+    setSemesterAssignments((current) => ({ ...current, [subjectId]: semester }));
   };
 
   const openSubject = (subject: Subject) => {
@@ -227,6 +258,8 @@ function App() {
           <PlannerView
             memo={memo}
             planner={planner}
+            semesterAssignments={semesterAssignments}
+            assignSemester={assignSemester}
             selectedSubjects={selectedSubjects}
             setMemo={setMemo}
             setView={setView}
@@ -773,22 +806,32 @@ function SubjectPills({ names, selectedNames, title }: { names: string[]; select
 }
 
 function PlannerView({
+  assignSemester,
   memo,
   planner,
+  semesterAssignments,
   selectedSubjects,
   setMemo,
   setView,
   toggleSubject,
   warnings,
 }: {
+  assignSemester: (subjectId: string, semester: SemesterId) => void;
   memo: string;
   planner: ReturnType<typeof calculateCredits>;
+  semesterAssignments: SemesterAssignments;
   selectedSubjects: Subject[];
   setMemo: (memo: string) => void;
   setView: (view: View) => void;
   toggleSubject: (subject: Subject) => void;
   warnings: ReturnType<typeof createWarnings>;
 }) {
+  const semesterSummaries = semesters.map((semester) => {
+    const items = selectedSubjects.filter((subject) => (semesterAssignments[subject.id] ?? "unassigned") === semester.id);
+    const credits = items.reduce((sum, subject) => sum + subject.credits, 0);
+    return { ...semester, items, credits };
+  });
+
   return (
     <section className="content-page planner-page">
       <div className="page-title">
@@ -821,17 +864,12 @@ function PlannerView({
                 </button>
               </div>
             ) : (
-              selectedSubjects.map((subject) => (
-                <div className="planner-item" key={subject.id}>
-                  <div>
-                    <strong>{subject.name}</strong>
-                    <span>{subject.group} · {subject.selectionType} · {subject.creditLabel}</span>
-                  </div>
-                  <button type="button" onClick={() => toggleSubject(subject)}>
-                    빼기
-                  </button>
-                </div>
-              ))
+              <SemesterBoard
+                assignSemester={assignSemester}
+                semesterAssignments={semesterAssignments}
+                semesterSummaries={semesterSummaries}
+                toggleSubject={toggleSubject}
+              />
             )}
           </div>
           <ComparisonTable selectedSubjects={selectedSubjects} />
@@ -850,6 +888,61 @@ function PlannerView({
         </aside>
       </div>
     </section>
+  );
+}
+
+function SemesterBoard({
+  assignSemester,
+  semesterAssignments,
+  semesterSummaries,
+  toggleSubject,
+}: {
+  assignSemester: (subjectId: string, semester: SemesterId) => void;
+  semesterAssignments: SemesterAssignments;
+  semesterSummaries: Array<{ id: SemesterId; label: string; shortLabel: string; items: Subject[]; credits: number }>;
+  toggleSubject: (subject: Subject) => void;
+}) {
+  return (
+    <div className="semester-board">
+      {semesterSummaries.map((semester) => (
+        <section className={semester.id === "unassigned" ? "semester-column unassigned" : "semester-column"} key={semester.id}>
+          <div className="semester-head">
+            <strong>{semester.label}</strong>
+            <span>{semester.credits}학점 · {semester.items.length}개</span>
+          </div>
+          <div className="semester-items">
+            {semester.items.length === 0 ? (
+              <p className="semester-empty">배치된 과목이 없습니다.</p>
+            ) : (
+              semester.items.map((subject) => (
+                <article className="planner-item" key={subject.id}>
+                  <div>
+                    <strong>{subject.name}</strong>
+                    <span>{subject.group} · {subject.selectionType} · {subject.creditLabel}</span>
+                  </div>
+                  <label>
+                    <span>학기</span>
+                    <select
+                      value={semesterAssignments[subject.id] ?? "unassigned"}
+                      onChange={(event) => assignSemester(subject.id, event.target.value as SemesterId)}
+                    >
+                      {semesters.map((option) => (
+                        <option key={option.id} value={option.id}>
+                          {option.label}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  <button type="button" onClick={() => toggleSubject(subject)}>
+                    빼기
+                  </button>
+                </article>
+              ))
+            )}
+          </div>
+        </section>
+      ))}
+    </div>
   );
 }
 
