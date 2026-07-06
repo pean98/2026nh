@@ -50,7 +50,7 @@ const statCards = [
   { label: "총 이수 학점", value: "192", note: "교과 174 + 창체 18" },
   { label: "필수 이수 학점", value: "84+", note: "교과군별 기준 확인" },
   { label: "국·수·영 제한", value: "81", note: "초과 불가" },
-  { label: "선택 과목", value: "60", note: "1학년 26개, 2학년 34개" },
+  { label: "선택 과목", value: "62", note: "1학년 27개, 2학년 35개" },
 ];
 
 const guideSteps = [
@@ -608,8 +608,9 @@ function SubjectCard({
       <button className="card-main" type="button" onClick={onOpen}>
         <div className="card-meta">
           <span>{gradeLabels[subject.grade]}</span>
-          <span>{subject.group}</span>
+        <span>{subject.group}</span>
         <span>{subject.selectionType}</span>
+          {subject.choiceGroup && <span>{subject.choiceGroup} 택{subject.choiceLimit}</span>}
           <span>{subject.availableSemesters.map((semester) => semesters.find((item) => item.id === semester)?.shortLabel).join(", ")}</span>
         </div>
         <h3>{subject.name}</h3>
@@ -657,6 +658,7 @@ function SubjectDetail({
         <span>평가<strong>{subject.evaluation}</strong></span>
         <span>계열<strong>{subject.tracks.join(" · ")}</strong></span>
         <span>개설 학기<strong>{subject.availableSemesters.map((semester) => semesters.find((item) => item.id === semester)?.shortLabel).join(" · ")}</strong></span>
+        <span>선택 조건<strong>{subject.choiceGroup ? `${subject.choiceGroup} 택${subject.choiceLimit}` : "개별 선택"}</strong></span>
       </div>
       <div className="detail-section">
         <h3>주요 키워드</h3>
