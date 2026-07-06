@@ -362,7 +362,7 @@ p {
 }
 
 .quick-grid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
 }
 
 .quick-grid button,
@@ -521,6 +521,59 @@ p {
   display: block;
   margin-bottom: 10px;
   color: #6b4b00;
+}
+
+.howto-steps {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.howto-step-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 16px;
+  border: 1px solid #dfe5dd;
+  border-radius: 12px;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0 12px 28px rgba(41, 51, 46, 0.06);
+}
+
+.howto-step-card > span {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: #154c54;
+  color: #fff;
+  font-weight: 850;
+}
+
+.howto-step-card h2 {
+  margin-bottom: 8px;
+  color: #17202a;
+  font-size: 20px;
+}
+
+.howto-step-card p {
+  color: #53645a;
+}
+
+.howto-step-card button {
+  border: 1px solid #d7dfd7;
+  border-radius: 10px;
+  padding: 9px 12px;
+  background: #f7faf6;
+  color: #154c54;
+  font-weight: 800;
+}
+
+.howto-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .check-list {
@@ -1304,6 +1357,7 @@ p {
   .dashboard-intro,
   .planner-layout,
   .subjects-layout,
+  .howto-steps,
   .credit-layout {
     grid-template-columns: 1fr;
   }
@@ -1369,6 +1423,14 @@ p {
 
   .planner-item {
     align-items: stretch;
+    flex-direction: column;
+  }
+
+  .howto-step-card {
+    grid-template-columns: 1fr;
+  }
+
+  .howto-actions {
     flex-direction: column;
   }
 }

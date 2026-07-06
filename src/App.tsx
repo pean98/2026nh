@@ -10,6 +10,7 @@ import {
   LibraryBig,
   Menu,
   Search,
+  ScrollText,
   Sparkles,
   Tags,
   X,
@@ -28,7 +29,7 @@ import {
   semesters,
 } from "./utils/planner";
 
-type View = "dashboard" | "guide" | "subjects" | "matching" | "planner" | "dreamdure" | "resources";
+type View = "dashboard" | "guide" | "subjects" | "matching" | "planner" | "dreamdure" | "howto" | "resources";
 
 const navItems: Array<{ id: View; label: string }> = [
   { id: "dashboard", label: "홈" },
@@ -37,6 +38,7 @@ const navItems: Array<{ id: View; label: string }> = [
   { id: "matching", label: "진로 매칭" },
   { id: "planner", label: "나의 설계" },
   { id: "dreamdure", label: "공동교육" },
+  { id: "howto", label: "활용방법" },
   { id: "resources", label: "자료실" },
 ];
 
@@ -91,6 +93,30 @@ const audienceGuides = [
   { title: "학생", text: "관심 키워드나 계열로 과목을 찾고, 후보 과목을 담아 학점 기준을 점검합니다." },
   { title: "학부모", text: "고교학점제 기준, 성적 산출 방식, 대입과 과목 선택의 관계를 먼저 확인합니다." },
   { title: "상담 전", text: "희망 진로, 고민 과목, 선택 이유를 메모해 담임·교과·진로 선생님과 상담합니다." },
+];
+
+const howToSteps = [
+  { title: "기준 이해하기", text: "먼저 고교학점제 메뉴에서 192학점, 필수 이수 학점, 국·수·영 81학점 제한을 확인합니다.", action: "고교학점제 보기", view: "guide" as View },
+  { title: "과목 찾기", text: "과목 백과에서 개설 학기, 교과군, 선택 유형, 관심 계열, 키워드로 후보 과목을 좁힙니다.", action: "과목 백과 열기", view: "subjects" as View },
+  { title: "상세 비교하기", text: "과목 카드를 눌러 한 줄 소개, 주요 키워드, 학습 활동, 추천 학생을 확인합니다.", action: "과목 탐색하기", view: "subjects" as View },
+  { title: "설계함에 담기", text: "관심 과목은 담기 버튼으로 저장하고, 나의 설계에서 학기별로 배치합니다.", action: "나의 설계 열기", view: "planner" as View },
+  { title: "진로와 연결하기", text: "진로 매칭에서 내 과목이 관심 계열과 어떻게 연결되는지 보고 권장과목 예시를 확인합니다.", action: "진로 매칭 보기", view: "matching" as View },
+  { title: "상담 준비하기", text: "상담 질문 칸에 고민 과목, 선택 이유, 선생님께 물어볼 내용을 적고 출력합니다.", action: "상담 준비하기", view: "planner" as View },
+];
+
+const routeGuides = [
+  { title: "아직 진로가 뚜렷하지 않다면", text: "키워드 검색에서 흥미 있는 말부터 눌러 보고, 마음이 가는 과목을 3개 이상 담아 비교합니다." },
+  { title: "희망 학과가 있다면", text: "진로 매칭에서 관심 계열을 먼저 확인한 뒤, 과목 백과에서 관련 과목의 학습 활동을 읽어 봅니다." },
+  { title: "과목이 너무 많아 헷갈린다면", text: "개설 학기 필터를 먼저 선택하고, 교과군과 선택 유형을 하나씩 좁혀 봅니다." },
+  { title: "학교에 없는 과목이 궁금하다면", text: "공동교육 메뉴에서 주변 꿈두레 운영 현황을 확인하고 상담 때 개설 여부를 질문합니다." },
+];
+
+const consultChecklist = [
+  "내가 담은 과목이 희망 진로 또는 관심 계열과 어떻게 연결되는지 설명할 수 있나요?",
+  "국어·수학·영어 과목 쏠림이나 학점 기준 위반 가능성은 없는지 확인했나요?",
+  "Ⅰ·Ⅱ 과목처럼 학습 순서가 필요한 과목은 없는지 살펴봤나요?",
+  "고민 중인 과목 2~3개를 비교하고 질문을 적어 두었나요?",
+  "꿈두레나 온라인 수업이 필요한 과목은 담임 선생님과 상담할 준비가 되었나요?",
 ];
 
 function App() {
@@ -302,6 +328,7 @@ function App() {
           />
         )}
         {view === "dreamdure" && <DreamDureView setView={setView} />}
+        {view === "howto" && <HowToView setView={setView} />}
         {view === "resources" && <ResourcesView />}
       </main>
     </div>
@@ -397,6 +424,11 @@ function Dashboard({
           <GraduationCap size={24} />
           <strong>꿈두레 공동교육과정</strong>
           <span>학교 미개설 과목 수강 방법 확인</span>
+        </button>
+        <button type="button" onClick={() => setView("howto")}>
+          <ScrollText size={24} />
+          <strong>사이트 활용방법</strong>
+          <span>과목 선택 준비 순서를 따라가기</span>
         </button>
       </div>
 
@@ -1207,6 +1239,78 @@ function CourseList({ names }: { names: string[] }) {
         <span key={name}>{name}</span>
       ))}
     </div>
+  );
+}
+
+function HowToView({ setView }: { setView: (view: View) => void }) {
+  return (
+    <section className="content-page">
+      <div className="page-title">
+        <span className="eyebrow">How To Use</span>
+        <h1>사이트 활용방법</h1>
+        <p>과목 선택을 처음 시작하는 학생도 순서대로 따라 할 수 있도록 사용 흐름을 정리했습니다.</p>
+      </div>
+
+      <div className="info-band">
+        <ScrollText size={28} />
+        <div>
+          <strong>목표는 최종 선택이 아니라 상담 준비입니다</strong>
+          <p>
+            이 사이트는 실제 수강 신청 시스템이 아니라, 관심 과목을 탐색하고 학점 기준을 점검하며 상담 질문을
+            정리하는 도구입니다. 최종 선택 전에는 반드시 담임·교과·진로 선생님과 상담하세요.
+          </p>
+        </div>
+      </div>
+
+      <div className="howto-steps">
+        {howToSteps.map((step, index) => (
+          <article className="howto-step-card" key={step.title}>
+            <span>{index + 1}</span>
+            <div>
+              <h2>{step.title}</h2>
+              <p>{step.text}</p>
+              <button type="button" onClick={() => setView(step.view)}>
+                {step.action}
+              </button>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div className="section-block flush">
+        <div className="section-heading compact">
+          <span className="eyebrow">Choose Your Route</span>
+          <h2>상황별 추천 활용 루트</h2>
+        </div>
+        <div className="type-grid">
+          {routeGuides.map((item) => (
+            <article className="mini-info-card" key={item.title}>
+              <strong>{item.title}</strong>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <div className="notice-panel">
+        <strong>상담 전에 스스로 확인할 체크리스트</strong>
+        <ul className="check-list">
+          {consultChecklist.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="howto-actions">
+        <button className="primary-button" type="button" onClick={() => setView("subjects")}>
+          과목 찾기 시작
+          <ChevronRight size={18} />
+        </button>
+        <button className="secondary-button" type="button" onClick={() => setView("planner")}>
+          나의 설계 확인
+        </button>
+      </div>
+    </section>
   );
 }
 
