@@ -1033,24 +1033,23 @@ function DreamDureView({ setView }: { setView: (view: View) => void }) {
       <div className="dream-courses">
         <div className="section-heading compact">
           <span className="eyebrow">Open Course Guide</span>
-          <h2>꿈두레에서 확인해 볼 대표 개설과목</h2>
-          <p>아래 과목은 탐색용 예시입니다. 실제 개설 여부, 수업 방식, 신청 기간은 학기별 공지와 상담을 통해 확인합니다.</p>
+          <h2>우리 학교 주변 꿈두레 교육과정 운영 현황</h2>
+          <p>아래 내용은 워크북에 제시된 학교별 개설 과목입니다. 신청 전에는 꿈맵핑과 학교 상담을 통해 최종 운영 여부를 확인합니다.</p>
         </div>
-        <div className="dream-course-grid">
+        <div className="dream-course-table">
+          <div className="dream-course-row head">
+            <span>학교명</span>
+            <span>유형</span>
+            <span>1학기</span>
+            <span>2학기</span>
+          </div>
           {dreamDureSubjects.map((item) => (
-            <article className="dream-course-card" key={item.id}>
-              <div className="dream-course-head">
-                <span>{item.type}</span>
-                <h3>{item.category}</h3>
-              </div>
-              <div className="course-chip-row">
-                {item.subjects.map((subject) => (
-                  <span key={subject}>{subject}</span>
-                ))}
-              </div>
-              <p>{item.fit}</p>
-              <small>{item.note}</small>
-            </article>
+            <div className="dream-course-row" key={item.id}>
+              <strong>{item.school}</strong>
+              <span className="type-pill">{item.type}</span>
+              <CourseList names={item.firstSemester} />
+              <CourseList names={item.secondSemester} />
+            </div>
           ))}
         </div>
       </div>
@@ -1076,6 +1075,20 @@ function DreamDureView({ setView }: { setView: (view: View) => void }) {
         </button>
       </div>
     </section>
+  );
+}
+
+function CourseList({ names }: { names: string[] }) {
+  if (names.length === 0) {
+    return <span className="empty-course">-</span>;
+  }
+
+  return (
+    <div className="course-chip-row">
+      {names.map((name) => (
+        <span key={name}>{name}</span>
+      ))}
+    </div>
   );
 }
 

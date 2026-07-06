@@ -783,15 +783,8 @@ p {
   gap: 14px;
 }
 
-.dream-course-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 14px;
-}
-
 .recommendation-card,
 .dream-card,
-.dream-course-card,
 .dream-consult,
 .dream-steps,
 .comparison-panel,
@@ -804,7 +797,6 @@ p {
 
 .recommendation-card,
 .dream-card,
-.dream-course-card,
 .dream-consult,
 .dream-steps,
 .comparison-panel,
@@ -1065,31 +1057,51 @@ p {
   gap: 14px;
 }
 
-.dream-course-card {
+.dream-course-table {
   display: grid;
-  gap: 14px;
-  align-content: start;
+  overflow-x: auto;
+  border: 1px solid #dfe5dd;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 12px 28px rgba(41, 51, 46, 0.06);
 }
 
-.dream-course-head {
+.dream-course-row {
   display: grid;
-  gap: 6px;
+  grid-template-columns: 180px 90px minmax(240px, 1fr) minmax(260px, 1fr);
+  min-width: 860px;
 }
 
-.dream-course-head span {
-  width: fit-content;
-  border-radius: 999px;
-  padding: 5px 9px;
-  background: #edf3ed;
-  color: #154c54;
-  font-size: 12px;
+.dream-course-row > * {
+  border-right: 1px solid #dfe5dd;
+  border-bottom: 1px solid #dfe5dd;
+  padding: 12px;
+}
+
+.dream-course-row > *:last-child {
+  border-right: 0;
+}
+
+.dream-course-row:last-child > * {
+  border-bottom: 0;
+}
+
+.dream-course-row.head {
+  background: #51b8e8;
+  color: #fff;
   font-weight: 850;
+  text-align: center;
 }
 
-.dream-course-head h3,
-.dream-consult h2 {
-  margin: 0;
+.dream-course-row strong {
   color: #17202a;
+}
+
+.type-pill,
+.empty-course {
+  color: #53645a;
+  font-weight: 800;
+  text-align: center;
 }
 
 .course-chip-row {
@@ -1101,20 +1113,15 @@ p {
 .course-chip-row span {
   border-radius: 999px;
   padding: 7px 10px;
-  background: #fff1c2;
-  color: #5f4706;
+  background: #eef7fb;
+  color: #154c54;
   font-size: 12px;
   font-weight: 800;
 }
 
-.dream-course-card p {
-  margin: 0;
-  color: #3f5148;
-}
-
-.dream-course-card small {
-  color: #66736a;
-  line-height: 1.55;
+.dream-consult h2 {
+  margin: 0 0 12px;
+  color: #17202a;
 }
 
 .dream-steps {
