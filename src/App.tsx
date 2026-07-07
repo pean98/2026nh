@@ -1459,6 +1459,26 @@ function ResourcesView() {
             <strong>인천논현고 홈페이지</strong>
             <span>학교 홈페이지 이동</span>
           </a>
+          <a className="resource-card link" href="https://www.career.go.kr" target="_blank" rel="noreferrer">
+            <ExternalLink size={24} />
+            <strong>커리어넷</strong>
+            <span>진로·직업 정보 탐색</span>
+          </a>
+          <a className="resource-card link" href="https://www.adiga.kr" target="_blank" rel="noreferrer">
+            <ExternalLink size={24} />
+            <strong>대입정보포털 어디가</strong>
+            <span>대학·전형 정보 확인</span>
+          </a>
+          <a className="resource-card link" href="https://www.schoolinfo.go.kr" target="_blank" rel="noreferrer">
+            <ExternalLink size={24} />
+            <strong>학교알리미</strong>
+            <span>학교 정보 공시</span>
+          </a>
+          <a className="resource-card link" href="https://www.work24.go.kr" target="_blank" rel="noreferrer">
+            <ExternalLink size={24} />
+            <strong>고용24</strong>
+            <span>직업·고용 정보 확인</span>
+          </a>
         </div>
       </div>
     </section>
