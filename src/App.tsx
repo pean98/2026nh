@@ -127,7 +127,6 @@ function App() {
   const [view, setView] = useState<View>("dashboard");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [query, setQuery] = useState("");
-  const [gradeFilter, setGradeFilter] = useState<Grade | "all">("all");
   const [group, setGroup] = useState<SubjectGroup | "all">("all");
   const [selectionType, setSelectionType] = useState<SelectionType | "all">("all");
   const [semesterFilter, setSemesterFilter] = useState<SemesterId | "all">("all");
@@ -184,7 +183,6 @@ function App() {
 
       return (
         (!normalized || text.includes(normalized)) &&
-        (gradeFilter === "all" || subject.grade === gradeFilter) &&
         (group === "all" || subject.group === group) &&
         (selectionType === "all" || subject.selectionType === selectionType) &&
         (semesterFilter === "all" || subject.availableSemesters.includes(semesterFilter)) &&
@@ -192,7 +190,7 @@ function App() {
         (activeKeyword === "all" || subject.keywords.includes(activeKeyword))
       );
     });
-  }, [activeKeyword, gradeFilter, group, query, selectionType, semesterFilter, track]);
+  }, [activeKeyword, group, query, selectionType, semesterFilter, track]);
 
   const toggleSubject = (subject: Subject) => {
     setSelectedIds((current) => {
@@ -220,7 +218,6 @@ function App() {
 
   const resetFilters = () => {
     setQuery("");
-    setGradeFilter("all");
     setGroup("all");
     setSelectionType("all");
     setSemesterFilter("all");
@@ -285,7 +282,6 @@ function App() {
         {view === "dashboard" && (
           <Dashboard
             selectedCount={selectedSubjects.length}
-            setGradeFilter={setGradeFilter}
             setView={setView}
             setSemesterFilter={setSemesterFilter}
             setActiveKeyword={setActiveKeyword}
@@ -296,7 +292,6 @@ function App() {
           <SubjectsView
             activeKeyword={activeKeyword}
             filteredSubjects={filteredSubjects}
-            gradeFilter={gradeFilter}
             group={group}
             openSubject={openSubject}
             query={query}
@@ -305,7 +300,6 @@ function App() {
             selectedSubject={selectedSubject}
             selectionType={selectionType}
             setActiveKeyword={setActiveKeyword}
-            setGradeFilter={setGradeFilter}
             setGroup={setGroup}
             setQuery={setQuery}
             setSelectionType={setSelectionType}
@@ -349,13 +343,11 @@ function App() {
 function Dashboard({
   selectedCount,
   setActiveKeyword,
-  setGradeFilter,
   setSemesterFilter,
   setView,
 }: {
   selectedCount: number;
   setActiveKeyword: (keyword: string) => void;
-  setGradeFilter: (grade: Grade | "all") => void;
   setSemesterFilter: (semester: SemesterId | "all") => void;
   setView: (view: View) => void;
 }) {
@@ -376,24 +368,22 @@ function Dashboard({
               className="primary-button"
               type="button"
               onClick={() => {
-                setGradeFilter(1);
-                setSemesterFilter("all");
+                setSemesterFilter("2-1");
                 setView("subjects");
               }}
             >
-              1학년 워크북 과목 보기
+              2학년 1학기 과목 보기
               <ChevronRight size={18} />
             </button>
             <button
               className="secondary-button"
               type="button"
               onClick={() => {
-                setGradeFilter(2);
-                setSemesterFilter("all");
+                setSemesterFilter("3-1");
                 setView("subjects");
               }}
             >
-              2학년 워크북 과목 보기
+              3학년 1학기 과목 보기
             </button>
           </div>
         </div>
@@ -579,7 +569,6 @@ function Guide() {
 function SubjectsView(props: {
   activeKeyword: string;
   filteredSubjects: Subject[];
-  gradeFilter: Grade | "all";
   group: SubjectGroup | "all";
   openSubject: (subject: Subject) => void;
   query: string;
@@ -589,7 +578,6 @@ function SubjectsView(props: {
   selectionType: SelectionType | "all";
   semesterFilter: SemesterId | "all";
   setActiveKeyword: (keyword: string) => void;
-  setGradeFilter: (grade: Grade | "all") => void;
   setGroup: (group: SubjectGroup | "all") => void;
   setQuery: (query: string) => void;
   setSelectionType: (selectionType: SelectionType | "all") => void;
@@ -605,6 +593,14 @@ function SubjectsView(props: {
           <Filter size={20} />
           <strong>과목 찾기</strong>
         </div>
+        <label className="search-box">
+          <Search size={18} />
+          <input
+            placeholder="과목명, 키워드, 계열 검색"
+            value={props.query}
+            onChange={(event) => props.setQuery(event.target.value)}
+          />
+        </label>
         <FilterSelect
           label="개설 학기"
           value={props.semesterFilter}
@@ -619,19 +615,6 @@ function SubjectsView(props: {
               </option>
             ))}
         </FilterSelect>
-        <FilterSelect label="대상 학년" value={props.gradeFilter} onChange={(value) => props.setGradeFilter(value === "all" ? "all" : Number(value) as Grade)}>
-          <option value="all">전체</option>
-          <option value="1">1학년 워크북</option>
-          <option value="2">2학년 워크북</option>
-        </FilterSelect>
-        <label className="search-box">
-          <Search size={18} />
-          <input
-            placeholder="과목명, 키워드, 계열 검색"
-            value={props.query}
-            onChange={(event) => props.setQuery(event.target.value)}
-          />
-        </label>
         <FilterSelect label="교과군" value={props.group} onChange={(value) => props.setGroup(value as SubjectGroup | "all")}>
           <option value="all">전체</option>
           {subjectGroups.map((item) => (
