@@ -75,6 +75,68 @@ const creditBySubject: Record<string, number> = {
   "논술": 2,
 };
 
+const videoBySubject: Record<string, { title: string; url: string }> = {
+  "독서 토론과 글쓰기": { title: "(Korean Language - Integrated Elective) Reading Discussion and Writing", url: "https://www.youtube.com/watch?v=EWeFbPn1Joo" },
+  "문학과 영상": { title: "(국어-진로선택)문학과영상", url: "https://www.youtube.com/watch?v=_i661jyHjbY" },
+  "기하": { title: "(Mathematics - Career Elective) Geometry", url: "https://www.youtube.com/watch?v=qnNEHIyn1OU" },
+  "경제수학": { title: "(Mathematics - Career Elective) Economic Mathematics", url: "https://www.youtube.com/watch?v=5kCKGit1Kl0" },
+  "미디어 영어": { title: "(영어-융합선택)미디어 영어", url: "https://www.youtube.com/watch?v=2cqxzbNIDHs" },
+  "세계 문화와 영어": { title: "(English-Fusion Elective) World Culture and English", url: "https://www.youtube.com/watch?v=ENw3_J_XrIk" },
+  "세계시민과 지리": { title: "(Social Studies - General Elective) Global Citizenship and Geography", url: "https://www.youtube.com/watch?v=8p1Iy8TgjXI" },
+  "도시의 미래 탐구": { title: "(사회-진로선택)도시의 미래 탐구", url: "https://www.youtube.com/watch?v=ykLmJBuUnb4" },
+  "세계사": { title: "(Social Studies - General Elective) World History", url: "https://www.youtube.com/watch?v=Wbh9eI_02_w" },
+  "동아시아 역사 기행": { title: "(사회-진로선택)동아시아 역사 기행", url: "https://www.youtube.com/watch?v=OgIn8jrrak0" },
+  "법과 사회": { title: "(Social Studies - Career Elective) Law and Society", url: "https://www.youtube.com/watch?v=D5fvo3khGcI" },
+  "정치": { title: "(Social Studies - Career Elective) Politics", url: "https://www.youtube.com/watch?v=F3gkE64YF6w" },
+  "윤리와 사상": { title: "(Social Studies - Career Elective) Ethics and Thought", url: "https://www.youtube.com/watch?v=ZBdTW9hZOdc" },
+  "현대사회와 윤리": { title: "(Social Studies-General Elective) Modern Society and Ethics", url: "https://www.youtube.com/watch?v=B_6Jq4u_DHY" },
+  "물리학": { title: "(Science-General Elective) Physics", url: "https://www.youtube.com/watch?v=inDup_lRBes" },
+  "역학과 에너지": { title: "(과학-진로선택)역학과에너지", url: "https://www.youtube.com/watch?v=P1gsKXHt0Qk" },
+  "화학": { title: "(과학-일반선택)화학", url: "https://www.youtube.com/watch?v=kE_t-3SlBUQ" },
+  "물질과 에너지": { title: "(과학-진로선택)물질과 에너지", url: "https://www.youtube.com/watch?v=K8pbCur_le0" },
+  "생명과학": { title: "(Science - General Elective) Life Science", url: "https://www.youtube.com/watch?v=3TfxrTHO2nI" },
+  "세포와 물질대사": { title: "(과학-진로선택)세포와 물질대사", url: "https://www.youtube.com/watch?v=60ZNah735uI" },
+  "지구과학": { title: "(Science-General Elective) Earth Science", url: "https://www.youtube.com/watch?v=OJduZuwnmwc" },
+  "지구시스템과학": { title: "(과학-진로선택)지구시스템과학", url: "https://www.youtube.com/watch?v=REq4IcQJpZY" },
+  "정보": { title: "(General Elective) Informatics", url: "https://www.youtube.com/watch?v=bPn0WxaJcOI" },
+  "데이터 과학": { title: "(Information - Career Elective) Data Science", url: "https://www.youtube.com/watch?v=xF6bt7sxTZQ" },
+  "중국어": { title: "(Second Foreign Language - General Elective) Chinese", url: "https://www.youtube.com/watch?v=0CPe3gT5Eok" },
+  "중국어 회화": { title: "(제2외국어-진로선택)-중국어회화", url: "https://www.youtube.com/watch?v=M65Z7eTDeyY" },
+  "일본어": { title: "(제2외국어-일반선택)일본어", url: "https://www.youtube.com/watch?v=XOZT2Xmshk8" },
+  "일본어 회화": { title: "(제2외국어-진로선택)일본어회화", url: "https://www.youtube.com/watch?v=z219CCYuPi4" },
+  "매체 의사소통": { title: "(Korean-Elective Convergence) Media Communication", url: "https://www.youtube.com/watch?v=nuawyF-W1qo" },
+  "미적분Ⅱ": { title: "(Mathematics-Career Elective) Calculus II", url: "https://www.youtube.com/watch?v=RvVz-HtHgLs" },
+  "수학과제 탐구": { title: "(수학-융합선택)수학과제 탐구", url: "https://www.youtube.com/watch?v=WgEo6GqrcKg" },
+  "심화 영어": { title: "(English-Career Elective) Advanced English", url: "https://www.youtube.com/watch?v=0rXqEFbQwTk" },
+  "사회와 문화": { title: "(Social Studies-General Elective) Society and Culture", url: "https://www.youtube.com/watch?v=67oFbY8Rkys" },
+  "경제": { title: "(Social Studies - Career Elective) Economics", url: "https://www.youtube.com/watch?v=DfL9JlpxisY" },
+  "사회문제 탐구": { title: "(사회-융합선택)사회문제 탐구", url: "https://www.youtube.com/watch?v=LAkca6ix5Ck" },
+  "한국지리 탐구": { title: "(Social Studies-Career Elective) Exploring Korean Geography", url: "https://www.youtube.com/watch?v=cgj5-o38mCg" },
+  "기후변화와 지속가능한 세계": { title: "(사회-융합선택)기후변화와 지속가능한 세계", url: "https://www.youtube.com/watch?v=j8RNTH4_BcM" },
+  "인문학과 윤리": { title: "(사회-진로선택)인문학과 윤리", url: "https://www.youtube.com/watch?v=jUvaRQ45cXk" },
+  "윤리문제 탐구": { title: "(사회-융합선택)윤리문제 탐구", url: "https://www.youtube.com/watch?v=tln1XgsFwxU" },
+  "역사로 탐구하는 현대 세계": { title: "(사회-융합선택)역사로 탐구하는 현대 세계", url: "https://www.youtube.com/watch?v=KcM2IDNmMR8" },
+  "전자기와 양자": { title: "(과학-진로선택)전자기와양자", url: "https://www.youtube.com/watch?v=metLGbJoyYY" },
+  "화학 반응의 세계": { title: "(Science-Career Elective) The World of Chemical Reactions", url: "https://www.youtube.com/watch?v=WeA06Ffmu5U" },
+  "생물의 유전": { title: "(Science - Career Elective) Biology: Genetics", url: "https://www.youtube.com/watch?v=PPeLwhZSQ0k" },
+  "행성우주과학": { title: "(과학-진로선택)행성우주과학", url: "https://www.youtube.com/watch?v=yUx5HNWxSPs" },
+  "과학의 역사와 문화": { title: "(과학-융합선택)과학의 역사와 문화", url: "https://www.youtube.com/watch?v=Tfrcyc6dv-c" },
+  "융합과학 탐구": { title: "(과학-융합선택)융합과학탐구", url: "https://www.youtube.com/watch?v=XRVPgSFOuXc" },
+  "기후변화와 환경생태": { title: "(과학-융합선택)기후변화와 환경생태", url: "https://www.youtube.com/watch?v=HDegDycz6xM" },
+  "음악 연주와 창작": { title: "(예술-진로선택)음악연주와 창작", url: "https://www.youtube.com/watch?v=V1-64ky4OoI" },
+  "음악과 미디어": { title: "(예술-융합선택)음악과 미디어", url: "https://www.youtube.com/watch?v=ibYM0GpglK4" },
+  "미술 창작": { title: "(예술-진로선택)미술창작", url: "https://www.youtube.com/watch?v=-TQSYy3-eNI" },
+  "미술과 매체": { title: "(예술-융합선택)미술과 매체", url: "https://www.youtube.com/watch?v=ZNjwVfVRupw" },
+  "인공지능 기초": { title: "(Information - Career Choice) Artificial Intelligence Basics", url: "https://www.youtube.com/watch?v=ehooAIfH69g" },
+  "중국문화": { title: "(제2외국어-융합선택)중국 문화", url: "https://www.youtube.com/watch?v=g_RPwVDaCWs" },
+  "심화중국어": { title: "(제2외국어-진로선택)심화중국어", url: "https://www.youtube.com/watch?v=yK-FkFhHN-E" },
+  "일본문화": { title: "(제2외국어-융합선택)일본문화", url: "https://www.youtube.com/watch?v=0cpiP2-zQSk" },
+  "심화일본어": { title: "(Second Foreign Language - Career Choice) Advanced Japanese", url: "https://www.youtube.com/watch?v=gAfarfixYXE" },
+  "생태와 환경": { title: "(Liberal Arts - General Elective) Ecology and Environment", url: "https://www.youtube.com/watch?v=epYXFb6XpUo" },
+  "인간과 심리": { title: "(교양-진로선택)인간과 심리", url: "https://www.youtube.com/watch?v=n_wuIG6Ps3M" },
+  "논술": { title: "(교양-융합선택)논술", url: "https://www.youtube.com/watch?v=CjqgHML-LiU" },
+};
+
 const choiceGroupBySubject: Record<string, { choiceGroup: string; choiceLimit: number }> = {};
 
 [
@@ -218,6 +280,7 @@ const subject = (
   availableSemesters?: Subject["availableSemesters"],
 ): Subject => {
   const credits = creditBySubject[name] ?? 3;
+  const video = videoBySubject[name];
 
   return {
     id,
@@ -238,6 +301,8 @@ const subject = (
     learningAreas: defaultAreas(keywords[0] ?? name),
     advancedActivities: defaultActivities(`${name} 심화 탐구`),
     prerequisites,
+    videoTitle: video?.title,
+    videoUrl: video?.url,
   };
 };
 

@@ -58,6 +58,8 @@ export interface Subject {
   learningAreas: LearningArea[];
   advancedActivities: AdvancedActivity[];
   prerequisites?: string[];
+  videoTitle?: string;
+  videoUrl?: string;
 }
 
 export interface PlanWarning {

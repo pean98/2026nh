@@ -771,6 +771,38 @@ p {
   border-top: 1px solid #edf1ed;
 }
 
+.card-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.video-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-height: 34px;
+  border: 1px solid #dbe6df;
+  border-radius: 8px;
+  padding: 0 10px;
+  background: #ffffff;
+  color: #31564f;
+  font-size: 13px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.video-link:hover {
+  border-color: #0f4c4c;
+  color: #0f4c4c;
+}
+
+.detail-video-link {
+  min-height: 40px;
+  padding: 0 12px;
+}
+
 .detail-panel {
   display: grid;
   gap: 18px;

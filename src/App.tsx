@@ -747,9 +747,17 @@ function SubjectCard({
       </button>
       <div className="card-foot">
         <span>{subject.creditLabel}</span>
-        <button className={isSelected ? "selected-button" : "add-button"} type="button" onClick={onToggle}>
-          {isSelected ? "담김" : "담기"}
-        </button>
+        <div className="card-actions">
+          {subject.videoUrl && (
+            <a className="video-link" href={subject.videoUrl} target="_blank" rel="noreferrer" aria-label={`${subject.name} 영상 보기`}>
+              <ExternalLink size={15} />
+              영상
+            </a>
+          )}
+          <button className={isSelected ? "selected-button" : "add-button"} type="button" onClick={onToggle}>
+            {isSelected ? "담김" : "담기"}
+          </button>
+        </div>
       </div>
     </article>
   );
@@ -770,6 +778,12 @@ function SubjectDetail({
         <span className="eyebrow">{subject.group}</span>
         <h2>{subject.name}</h2>
         <p>{subject.oneLine}</p>
+        {subject.videoUrl && (
+          <a className="video-link detail-video-link" href={subject.videoUrl} target="_blank" rel="noreferrer" title={subject.videoTitle}>
+            <ExternalLink size={16} />
+            과목 영상 보기
+          </a>
+        )}
         <button className={isSelected ? "selected-button wide" : "primary-button wide"} type="button" onClick={toggleSubject}>
           {isSelected ? "설계함에서 빼기" : "나의 설계함에 담기"}
         </button>
