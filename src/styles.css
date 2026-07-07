@@ -394,6 +394,39 @@ p {
   color: #66736a;
 }
 
+.resource-section {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.resource-section h2 {
+  margin: 0;
+  color: #154c54;
+  font-size: 20px;
+}
+
+.resource-card.file {
+  background: #fff;
+}
+
+.resource-card.link {
+  border-color: #cfe5f3;
+  background: #f1f9fd;
+}
+
+.resource-card.link svg {
+  color: #2182a6;
+}
+
+.resource-card.link:hover {
+  background: #e8f5fb;
+}
+
+.resource-grid.link-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .section-block,
 .content-page {
   padding: 28px;
@@ -1213,16 +1246,20 @@ p {
 .course-chip-row {
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
   gap: 7px;
 }
 
 .course-chip-row span {
+  flex: 0 0 auto;
   border-radius: 999px;
   padding: 7px 10px;
   background: #eef7fb;
   color: #154c54;
   font-size: 12px;
   font-weight: 800;
+  line-height: 1.1;
+  white-space: nowrap;
 }
 
 .dream-consult h2 {

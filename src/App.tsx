@@ -1323,42 +1323,50 @@ function ResourcesView() {
         <h1>자료실</h1>
         <p>원본 워크북과 상담 자료를 확인합니다. 1~23쪽 공통 안내에는 고교학점제, 과목 선택 절차, 대입 연계, 학업 설계, 꿈두레 안내가 담겨 있습니다.</p>
       </div>
-      <div className="resource-grid">
-        <a href="./2026 교육과정박람회(인천논현고)_1학년.pdf" target="_blank" rel="noreferrer">
-          <BookOpen size={24} />
-          <strong>1학년 과목 선택 워크북</strong>
-          <span>PDF 열기</span>
-        </a>
-        <a href="./2026 교육과정박람회(인천논현고)_2학년.pdf" target="_blank" rel="noreferrer">
-          <BookOpen size={24} />
-          <strong>2학년 과목 선택 워크북</strong>
-          <span>PDF 열기</span>
-        </a>
-        <a href="./2026학년도 입학생 교육과정편성표.pdf" target="_blank" rel="noreferrer">
-          <BookOpen size={24} />
-          <strong>2026학년도 입학생 교육과정편성표</strong>
-          <span>운영학점 확인</span>
-        </a>
-        <a href="./2025학년도 입학생 교육과정편성표.pdf" target="_blank" rel="noreferrer">
-          <BookOpen size={24} />
-          <strong>2025학년도 입학생 교육과정편성표</strong>
-          <span>운영학점 확인</span>
-        </a>
-        <a href="https://nh.riroschool.kr/" target="_blank" rel="noreferrer">
-          <ExternalLink size={24} />
-          <strong>인천논현고 리로스쿨</strong>
-          <span>실제 과목 선택</span>
-        </a>
-        <a href="https://hikimho.github.io/-/" target="_blank" rel="noreferrer">
-          <ExternalLink size={24} />
-          <strong>고등학교 과목 선택 내비게이션</strong>
-          <span>과목 선택 참고</span>
-        </a>
-        <a href="https://nh.icehs.kr" target="_blank" rel="noreferrer">
-          <GraduationCap size={24} />
-          <strong>인천논현고 홈페이지</strong>
-          <span>학교 홈페이지 이동</span>
-        </a>
+      <div className="resource-section">
+        <h2>PDF 자료</h2>
+        <div className="resource-grid">
+          <a className="resource-card file" href="./2026 교육과정박람회(인천논현고)_1학년.pdf" target="_blank" rel="noreferrer">
+            <BookOpen size={24} />
+            <strong>1학년 과목 선택 워크북</strong>
+            <span>PDF 열기</span>
+          </a>
+          <a className="resource-card file" href="./2026 교육과정박람회(인천논현고)_2학년.pdf" target="_blank" rel="noreferrer">
+            <BookOpen size={24} />
+            <strong>2학년 과목 선택 워크북</strong>
+            <span>PDF 열기</span>
+          </a>
+          <a className="resource-card file" href="./2026학년도 입학생 교육과정편성표.pdf" target="_blank" rel="noreferrer">
+            <BookOpen size={24} />
+            <strong>2026학년도 입학생 교육과정편성표</strong>
+            <span>운영학점 확인</span>
+          </a>
+          <a className="resource-card file" href="./2025학년도 입학생 교육과정편성표.pdf" target="_blank" rel="noreferrer">
+            <BookOpen size={24} />
+            <strong>2025학년도 입학생 교육과정편성표</strong>
+            <span>운영학점 확인</span>
+          </a>
+        </div>
+      </div>
+      <div className="resource-section">
+        <h2>유용한 링크</h2>
+        <div className="resource-grid link-grid">
+          <a className="resource-card link" href="https://nh.riroschool.kr/" target="_blank" rel="noreferrer">
+            <ExternalLink size={24} />
+            <strong>선택과목 수강을 위한 인천논현고 리로스쿨</strong>
+            <span>실제 과목 선택</span>
+          </a>
+          <a className="resource-card link" href="https://hikimho.github.io/-/" target="_blank" rel="noreferrer">
+            <ExternalLink size={24} />
+            <strong>고등학교 과목 선택 내비게이션</strong>
+            <span>과목 선택 참고</span>
+          </a>
+          <a className="resource-card link" href="https://nh.icehs.kr" target="_blank" rel="noreferrer">
+            <GraduationCap size={24} />
+            <strong>인천논현고 홈페이지</strong>
+            <span>학교 홈페이지 이동</span>
+          </a>
+        </div>
       </div>
     </section>
   );
