@@ -593,6 +593,20 @@ function SubjectsView(props: {
           <Filter size={20} />
           <strong>과목 찾기</strong>
         </div>
+        <FilterSelect
+          label="개설 학기"
+          value={props.semesterFilter}
+          onChange={(value) => props.setSemesterFilter(value as SemesterId | "all")}
+        >
+          <option value="all">전체</option>
+          {semesters
+            .filter((semester) => semester.id !== "unassigned")
+            .map((semester) => (
+              <option key={semester.id} value={semester.id}>
+                {semester.label}
+              </option>
+            ))}
+        </FilterSelect>
         <label className="search-box">
           <Search size={18} />
           <input
@@ -620,20 +634,6 @@ function SubjectsView(props: {
               {item}
             </option>
           ))}
-        </FilterSelect>
-        <FilterSelect
-          label="개설 학기"
-          value={props.semesterFilter}
-          onChange={(value) => props.setSemesterFilter(value as SemesterId | "all")}
-        >
-          <option value="all">전체</option>
-          {semesters
-            .filter((semester) => semester.id !== "unassigned")
-            .map((semester) => (
-              <option key={semester.id} value={semester.id}>
-                {semester.label}
-              </option>
-            ))}
         </FilterSelect>
         <FilterSelect label="관심 계열" value={props.track} onChange={(value) => props.setTrack(value as Track | "all")}>
           <option value="all">전체</option>
@@ -1432,7 +1432,7 @@ function ResourcesView() {
         <div className="resource-grid link-grid">
           <a className="resource-card link" href="https://nh.riroschool.kr/" target="_blank" rel="noreferrer">
             <ExternalLink size={24} />
-            <strong>선택과목 수강을 위한 인천논현고 리로스쿨</strong>
+            <strong>리로스쿨(선택과목 수강 신청)</strong>
             <span>실제 과목 선택</span>
           </a>
           <a className="resource-card link" href="https://hikimho.github.io/-/" target="_blank" rel="noreferrer">
