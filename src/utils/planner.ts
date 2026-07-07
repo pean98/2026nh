@@ -2,10 +2,10 @@ import type { PlanWarning, SemesterAssignments, SemesterId, Subject } from "../t
 
 export const semesters: Array<{ id: SemesterId; label: string; shortLabel: string }> = [
   { id: "unassigned", label: "미배치", shortLabel: "미배치" },
-  { id: "2-1", label: "2학년 1학기", shortLabel: "2-1" },
-  { id: "2-2", label: "2학년 2학기", shortLabel: "2-2" },
-  { id: "3-1", label: "3학년 1학기", shortLabel: "3-1" },
-  { id: "3-2", label: "3학년 2학기", shortLabel: "3-2" },
+  { id: "2-1", label: "(2027)2학년 1학기", shortLabel: "(2027)2-1" },
+  { id: "2-2", label: "(2027)2학년 2학기", shortLabel: "(2027)2-2" },
+  { id: "3-1", label: "(2027)3학년 1학기", shortLabel: "(2027)3-1" },
+  { id: "3-2", label: "(2027)3학년 2학기", shortLabel: "(2027)3-2" },
 ];
 
 export const calculateCredits = (selected: Subject[]) => {
