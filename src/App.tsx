@@ -34,12 +34,12 @@ type View = "dashboard" | "guide" | "subjects" | "matching" | "planner" | "dream
 
 const navItems: Array<{ id: View; label: string }> = [
   { id: "dashboard", label: "홈" },
+  { id: "howto", label: "활용방법" },
   { id: "guide", label: "고교학점제" },
   { id: "subjects", label: "과목 백과" },
   { id: "matching", label: "진로 매칭" },
   { id: "planner", label: "나의 설계" },
   { id: "dreamdure", label: "공동교육" },
-  { id: "howto", label: "활용방법" },
   { id: "resources", label: "자료실" },
 ];
 
