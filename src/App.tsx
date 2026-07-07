@@ -5,6 +5,7 @@ import {
   CheckCircle2,
   ChevronRight,
   Download,
+  ExternalLink,
   Filter,
   GraduationCap,
   LibraryBig,
@@ -1342,6 +1343,16 @@ function ResourcesView() {
           <BookOpen size={24} />
           <strong>2025학년도 입학생 교육과정편성표</strong>
           <span>운영학점 확인</span>
+        </a>
+        <a href="https://nh.riroschool.kr/" target="_blank" rel="noreferrer">
+          <ExternalLink size={24} />
+          <strong>인천논현고 리로스쿨</strong>
+          <span>실제 과목 선택</span>
+        </a>
+        <a href="https://hikimho.github.io/-/" target="_blank" rel="noreferrer">
+          <ExternalLink size={24} />
+          <strong>고등학교 과목 선택 내비게이션</strong>
+          <span>과목 선택 참고</span>
         </a>
         <a href="https://nh.icehs.kr" target="_blank" rel="noreferrer">
           <GraduationCap size={24} />
