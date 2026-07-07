@@ -39,7 +39,7 @@ const navItems: Array<{ id: View; label: string }> = [
   { id: "subjects", label: "과목 백과" },
   { id: "matching", label: "진로 매칭" },
   { id: "planner", label: "나의 설계" },
-  { id: "dreamdure", label: "공동교육" },
+  { id: "dreamdure", label: "꿈두레" },
   { id: "qna", label: "QnA" },
   { id: "resources", label: "자료실" },
 ];
@@ -1414,7 +1414,7 @@ function ResourcesView() {
       <div className="page-title">
         <span className="eyebrow">Resources</span>
         <h1>자료실</h1>
-        <p>원본 워크북과 상담 자료를 확인합니다. 1~23쪽 공통 안내에는 고교학점제, 과목 선택 절차, 대입 연계, 학업 설계, 꿈두레 안내가 담겨 있습니다.</p>
+        <p>원본 워크북과 상담 자료를 확인합니다. 1~23쪽 공통 안내에는 고교학점제, 과목 선택 절차, 대입 연계, 학업 설계, 꿈두레 공동교육과정 안내가 담겨 있습니다.</p>
       </div>
       <div className="resource-section">
         <h2>PDF 자료</h2>
