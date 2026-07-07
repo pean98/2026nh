@@ -52,7 +52,7 @@ const statCards = [
   { label: "총 이수 학점", value: "192", note: "교과 174 + 창체 18" },
   { label: "필수 이수 학점", value: "84+", note: "교과군별 기준 확인" },
   { label: "국·수·영 제한", value: "81", note: "초과 불가" },
-  { label: "선택 과목", value: "62", note: "1학년 27개, 2학년 35개" },
+  { label: "선택 과목", value: "63", note: "1학년 28개, 2학년 35개" },
 ];
 
 const guideSteps = [
@@ -408,7 +408,7 @@ function Dashboard({
         <button type="button" onClick={() => setView("subjects")}>
           <LibraryBig size={24} />
           <strong>선택 과목 백과</strong>
-          <span>62개 과목을 필터와 태그로 탐색</span>
+          <span>63개 과목을 필터와 태그로 탐색</span>
         </button>
         <button type="button" onClick={() => setView("planner")}>
           <Calculator size={24} />
