@@ -48,8 +48,8 @@ const qnaFormUrl = "https://forms.gle/HEaTQ2BRJ5A9EidL7";
 
 const gradeLabels: Record<Grade | "all", string> = {
   all: "전체",
-  1: "1학년 워크북",
-  2: "2학년 워크북",
+  1: "2학년",
+  2: "3학년",
 };
 
 const statCards = [
