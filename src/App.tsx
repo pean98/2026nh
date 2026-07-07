@@ -30,7 +30,7 @@ import {
   semesters,
 } from "./utils/planner";
 
-type View = "dashboard" | "guide" | "subjects" | "matching" | "planner" | "dreamdure" | "howto" | "resources";
+type View = "dashboard" | "guide" | "subjects" | "matching" | "planner" | "dreamdure" | "howto" | "qna" | "resources";
 
 const navItems: Array<{ id: View; label: string }> = [
   { id: "dashboard", label: "홈" },
@@ -40,8 +40,11 @@ const navItems: Array<{ id: View; label: string }> = [
   { id: "matching", label: "진로 매칭" },
   { id: "planner", label: "나의 설계" },
   { id: "dreamdure", label: "공동교육" },
+  { id: "qna", label: "QnA" },
   { id: "resources", label: "자료실" },
 ];
+
+const qnaFormUrl = "https://forms.gle/HEaTQ2BRJ5A9EidL7";
 
 const gradeLabels: Record<Grade | "all", string> = {
   all: "전체",
@@ -330,6 +333,7 @@ function App() {
         )}
         {view === "dreamdure" && <DreamDureView setView={setView} />}
         {view === "howto" && <HowToView setView={setView} />}
+        {view === "qna" && <QnaView />}
         {view === "resources" && <ResourcesView />}
       </main>
     </div>
@@ -1310,6 +1314,81 @@ function HowToView({ setView }: { setView: (view: View) => void }) {
         <button className="secondary-button" type="button" onClick={() => setView("planner")}>
           나의 설계 확인
         </button>
+      </div>
+    </section>
+  );
+}
+
+function QnaView() {
+  const faqItems = [
+    {
+      question: "질문을 남기면 바로 공개되나요?",
+      answer: "아니요. 제출된 질문은 선생님이 먼저 확인한 뒤, 여러 학생에게 도움이 되는 내용만 정리해 공개합니다.",
+    },
+    {
+      question: "개인 상담이 필요한 내용도 적어도 되나요?",
+      answer: "가능합니다. 다만 민감한 개인정보나 성적 정보는 자세히 쓰지 말고, 상담 때 직접 확인할 수 있도록 질문만 간단히 남겨 주세요.",
+    },
+    {
+      question: "답변은 어디에서 확인하나요?",
+      answer: "반복되는 질문은 이 QnA 페이지의 자주 묻는 질문 영역에 정리해 안내할 예정입니다.",
+    },
+  ];
+
+  return (
+    <section className="content-page">
+      <div className="page-title">
+        <span className="eyebrow">QnA</span>
+        <h1>궁금한 점 남기기</h1>
+        <p>과목 선택, 학점 기준, 진로와 과목 연결처럼 혼자 판단하기 어려운 내용을 질문으로 남길 수 있습니다.</p>
+      </div>
+
+      <div className="info-band">
+        <CheckCircle2 size={28} />
+        <div>
+          <strong>질문은 Google Form으로 받습니다</strong>
+          <p>
+            제출된 질문은 선생님이 확인한 뒤 상담 자료와 자주 묻는 질문으로 정리합니다. 이름, 학번, 성적처럼
+            불필요한 개인정보는 적지 않아도 됩니다.
+          </p>
+        </div>
+      </div>
+
+      <div className="resource-section">
+        <h2>질문하기</h2>
+        <div className="resource-grid link-grid">
+          <a className="resource-card link" href={qnaFormUrl} target="_blank" rel="noreferrer">
+            <ExternalLink size={24} />
+            <strong>QnA 질문 남기기</strong>
+            <span>Google Form 열기</span>
+          </a>
+          <article className="resource-card qna-note">
+            <CheckCircle2 size={24} />
+            <strong>질문 예시</strong>
+            <span>이 과목이 제 진로와 맞나요?</span>
+            <span>2학년 때 꼭 들어야 할 과목이 있나요?</span>
+          </article>
+          <article className="resource-card qna-note">
+            <ScrollText size={24} />
+            <strong>답변 운영</strong>
+            <span>개별 상담이 필요한 내용은 담임 선생님과 연결해 확인합니다.</span>
+          </article>
+        </div>
+      </div>
+
+      <div className="section-block flush">
+        <div className="section-heading compact">
+          <span className="eyebrow">FAQ</span>
+          <h2>자주 묻는 질문</h2>
+        </div>
+        <div className="type-grid">
+          {faqItems.map((item) => (
+            <article className="mini-info-card" key={item.question}>
+              <strong>{item.question}</strong>
+              <p>{item.answer}</p>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );

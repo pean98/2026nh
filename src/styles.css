@@ -327,6 +327,7 @@ p {
 .guide-card,
 .quick-grid button,
 .resource-grid a,
+.resource-grid .resource-card,
 .track-card,
 .match-panel,
 .memo-panel,
@@ -372,7 +373,8 @@ p {
 }
 
 .quick-grid button,
-.resource-grid a {
+.resource-grid a,
+.resource-grid .resource-card {
   display: grid;
   gap: 8px;
   min-height: 138px;
@@ -421,6 +423,14 @@ p {
 
 .resource-card.link:hover {
   background: #e8f5fb;
+}
+
+.resource-card.qna-note {
+  background: #fffdf4;
+}
+
+.resource-card.qna-note svg {
+  color: #c28a15;
 }
 
 .resource-grid.link-grid {
