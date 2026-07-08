@@ -45,10 +45,10 @@ button {
   gap: 14px;
   height: 72px;
   padding: 0 28px;
-  border-bottom: 1px solid #cdd9d2;
-  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid #b9c9c2;
+  background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(16px);
-  box-shadow: 0 8px 24px rgba(34, 46, 40, 0.08);
+  box-shadow: 0 10px 30px rgba(21, 76, 84, 0.12);
 }
 
 .brand {
@@ -98,31 +98,48 @@ button {
   min-width: 0;
   overflow-x: auto;
   scrollbar-width: thin;
-  padding: 7px;
-  border: 1px solid #d8e2dc;
-  border-radius: 999px;
-  background: #f4f8f5;
+  padding: 8px;
+  border: 1px solid #c5d4ce;
+  border-radius: 18px;
+  background: #eaf2ee;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.72);
 }
 
 .desktop-nav button,
 .mobile-menu-panel button {
   flex-shrink: 0;
-  border: 1px solid transparent;
-  border-radius: 999px;
+  border: 1px solid #d4dfd9;
+  border-radius: 12px;
   padding: 10px 14px;
-  background: transparent;
-  color: #31443a;
+  background: #fff;
+  color: #24372e;
   font-weight: 800;
   white-space: nowrap;
+  box-shadow: 0 3px 10px rgba(41, 51, 46, 0.06);
 }
 
 .desktop-nav button.active,
 .desktop-nav button:hover,
 .mobile-menu-panel button.active {
-  border-color: #154c54;
+  border-color: #d76735;
   background: #154c54;
   color: #fff;
-  box-shadow: 0 8px 18px rgba(21, 76, 84, 0.18);
+  box-shadow: 0 10px 22px rgba(21, 76, 84, 0.24);
+}
+
+.desktop-nav button.active {
+  position: relative;
+}
+
+.desktop-nav button.active::after {
+  content: "";
+  position: absolute;
+  right: 10px;
+  bottom: 6px;
+  left: 10px;
+  height: 3px;
+  border-radius: 999px;
+  background: #ffd36a;
 }
 
 .mobile-menu-button {
