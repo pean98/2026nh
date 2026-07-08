@@ -357,8 +357,9 @@ function Dashboard({
     <section className="dashboard">
       <div className="dashboard-intro">
         <div className="intro-copy">
-          <span className="eyebrow">2026 Curriculum Fair</span>
-          <h1>내 꿈을 향한 주도적인 선택</h1>
+          <span className="eyebrow">IN Curriculum Fair</span>
+          <h1>인천논현고 2026 교육과정박람회</h1>
+          <strong className="hero-slogan">내 꿈을 향한 주도적인 선택</strong>
           <p>
             1·2학년 과목 선택 워크북을 검색 가능한 웹사이트로 바꾸고, 관심 과목을 담아 학점 기준까지
             점검해 볼 수 있습니다.
