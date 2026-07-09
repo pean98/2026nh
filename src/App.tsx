@@ -1443,11 +1443,6 @@ function ResourcesView() {
             <strong>2025학년도 입학생 교육과정편성표</strong>
             <span>운영학점 확인</span>
           </a>
-          <a className="resource-card file" href="./서포터즈_학생_교육자료.hwpx" target="_blank" rel="noreferrer">
-            <BookOpen size={24} />
-            <strong>학생 서포터즈 교육자료</strong>
-            <span>HWPX 다운로드</span>
-          </a>
         </div>
       </div>
       <div className="resource-section">
