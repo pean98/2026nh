@@ -1470,7 +1470,7 @@ function ResourcesView() {
           </a>
           <a className="resource-card link" href="https://www.career.go.kr" target="_blank" rel="noreferrer">
             <ExternalLink size={24} />
-            <strong>커리어넷</strong>
+            <strong>커리어넷(진로 심리 검사)</strong>
             <span>진로·직업 정보 탐색</span>
           </a>
           <a className="resource-card link" href="https://www.adiga.kr" target="_blank" rel="noreferrer">
@@ -1485,7 +1485,7 @@ function ResourcesView() {
           </a>
           <a className="resource-card link" href="https://www.work24.go.kr" target="_blank" rel="noreferrer">
             <ExternalLink size={24} />
-            <strong>고용24</strong>
+            <strong>고용24(진로 심리 검사)</strong>
             <span>직업·고용 정보 확인</span>
           </a>
         </div>
