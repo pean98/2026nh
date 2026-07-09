@@ -52,7 +52,7 @@ export const admissionRecommendations: AdmissionRecommendation[] = [
     university: "인천대학교",
     department: "국어교육과",
     track: "교육",
-    coreSubjects: ["독서 토론과 글쓰기", "매체 의사소통"],
+    coreSubjects: ["주제탐구독서", "매체 의사소통"],
     recommendedSubjects: ["문학과 영상", "논술", "인간과 심리"],
     note: "읽기·쓰기·매체 소통 역량과 학생 이해 역량을 함께 보여줄 수 있습니다.",
   },
@@ -175,7 +175,7 @@ export const dreamDureSubjects: DreamDureSubject[] = [
     id: "incheon-songcheon",
     school: "인천송천고등학교",
     type: "거점형",
-    firstSemester: ["독서 토론과 글쓰기", "인공지능 수학", "체육 전공 실기 기초"],
-    secondSemester: ["인공지능 수학", "교육의 이해", "화학 실험", "기초 체육 전공 실기", "독서 토론과 글쓰기", "인공지능 모델링"],
+    firstSemester: ["주제탐구독서", "인공지능 수학", "체육 전공 실기 기초"],
+    secondSemester: ["인공지능 수학", "교육의 이해", "화학 실험", "기초 체육 전공 실기", "주제탐구독서", "인공지능 모델링"],
   },
 ];

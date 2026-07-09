@@ -1,7 +1,7 @@
 import type { Subject } from "../types";
 
 const semesterBySubject: Record<string, Subject["availableSemesters"]> = {
-  "독서 토론과 글쓰기": ["2-1"],
+  "주제탐구독서": ["2-1"],
   "문학과 영상": ["2-2"],
   "기하": ["2-1"],
   "경제수학": ["2-2"],
@@ -76,7 +76,7 @@ const creditBySubject: Record<string, number> = {
 };
 
 const videoBySubject: Record<string, { title: string; url: string }> = {
-  "독서 토론과 글쓰기": { title: "(Korean Language - Integrated Elective) Reading Discussion and Writing", url: "https://www.youtube.com/watch?v=EWeFbPn1Joo" },
+  "주제탐구독서": { title: "(국어-진로선택)주제탐구독서", url: "https://www.youtube.com/watch?v=EWeFbPn1Joo" },
   "문학과 영상": { title: "(국어-진로선택)문학과영상", url: "https://www.youtube.com/watch?v=_i661jyHjbY" },
   "기하": { title: "(Mathematics - Career Elective) Geometry", url: "https://www.youtube.com/watch?v=qnNEHIyn1OU" },
   "경제수학": { title: "(Mathematics - Career Elective) Economic Mathematics", url: "https://www.youtube.com/watch?v=5kCKGit1Kl0" },
@@ -140,13 +140,13 @@ const videoBySubject: Record<string, { title: string; url: string }> = {
 const choiceGroupBySubject: Record<string, { choiceGroup: string; choiceLimit: number }> = {};
 
 [
-  "독서 토론과 글쓰기",
+  "주제탐구독서",
   "문학과 영상",
   "기하",
   "경제수학",
   "미디어 영어",
   "세계 문화와 영어",
-  "독서 토론과 글쓰기",
+  "주제탐구독서",
   "매체 의사소통",
   "미적분Ⅱ",
   "수학과제 탐구",
@@ -311,7 +311,7 @@ const threeLevel = "성취도 3단계";
 const pass = "P";
 
 export const subjects: Subject[] = [
-  subject("g1-reading-discussion-writing", 1, "독서 토론과 글쓰기", "국어", "진로 선택", graded, false, "읽기, 토론, 글쓰기를 연결해 비판적 사고와 표현 능력을 기르는 과목입니다.", ["비판적사고", "토론", "글쓰기"], ["인문", "사회", "교육"], ["책을 읽고 자신의 생각을 논리적으로 표현하고 싶은 학생"]),
+  subject("g1-topic-inquiry-reading", 1, "주제탐구독서", "국어", "진로 선택", graded, false, "관심 주제를 정해 독서 자료를 탐색·분석하고 탐구 내용을 논리적으로 표현하는 과목입니다.", ["주제탐구", "독서", "비판적사고"], ["인문", "사회", "교육"], ["관심 분야의 책과 자료를 읽고 자신의 탐구 질문을 깊게 발전시키고 싶은 학생"]),
   subject("g1-literature-media", 1, "문학과 영상", "국어", "진로 선택", graded, false, "문학 작품과 영상 매체를 함께 읽으며 스토리텔링과 매체 이해력을 기르는 과목입니다.", ["스토리텔링", "영상", "문학"], ["인문", "예술·체육", "교육"], ["문학, 영화, 드라마, 영상 콘텐츠에 관심 있는 학생"]),
   subject("g1-geometry", 1, "기하", "수학", "진로 선택", graded, true, "도형과 공간을 수학적으로 이해하며 공학·자연 계열의 기초 사고력을 기르는 과목입니다.", ["공간추론", "도형", "수학모델링"], ["자연", "공학", "의약학"], ["공학, 건축, 물리, 컴퓨터그래픽에 관심 있는 학생"]),
   subject("g1-economic-math", 1, "경제수학", "수학", "진로 선택", graded, false, "경제 현상을 수학적으로 해석하며 합리적 의사결정과 모델링 역량을 기르는 과목입니다.", ["경제", "수학모델링", "의사결정"], ["상경", "사회"], ["경제, 경영, 금융 분야에 관심 있는 학생"]),
@@ -340,7 +340,7 @@ export const subjects: Subject[] = [
   subject("g1-japanese", 1, "일본어", "제2외국어/한문", "일반 선택", graded, true, "기초 일본어 의사소통 능력과 일본 문화 이해력을 기르는 과목입니다.", ["일본어", "의사소통", "타문화이해"], ["국제", "인문", "상경"], ["일본어와 일본 문화에 관심 있는 학생"]),
   subject("g1-japanese-conversation", 1, "일본어 회화", "제2외국어/한문", "진로 선택", graded, false, "일본어 듣기와 말하기를 중심으로 실제 소통 능력을 기르는 과목입니다.", ["일본어회화", "의사소통", "세계시민"], ["국제", "인문", "상경"], ["일본어로 자연스럽게 소통하고 싶은 학생"]),
 
-  subject("g2-reading-discussion-writing", 2, "독서 토론과 글쓰기", "국어", "융합 선택", graded, false, "읽기, 토론, 글쓰기를 연결해 비판적 사고와 표현 능력을 기르는 과목입니다.", ["비판적사고", "토론", "글쓰기"], ["인문", "사회", "교육"], ["책을 읽고 자신의 생각을 논리적으로 표현하고 싶은 학생"], undefined, ["3-2"]),
+  subject("g2-topic-inquiry-reading", 2, "주제탐구독서", "국어", "융합 선택", graded, false, "관심 주제를 정해 독서 자료를 탐색·분석하고 탐구 내용을 논리적으로 표현하는 과목입니다.", ["주제탐구", "독서", "비판적사고"], ["인문", "사회", "교육"], ["관심 분야의 책과 자료를 읽고 자신의 탐구 질문을 깊게 발전시키고 싶은 학생"], undefined, ["3-2"]),
   subject("g2-media-communication", 2, "매체 의사소통", "국어", "융합 선택", graded, false, "다양한 매체를 비판적으로 이해하고 효과적으로 소통하는 능력을 기르는 과목입니다.", ["매체", "의사소통", "비판적사고"], ["인문", "사회", "예술·체육"], ["미디어 콘텐츠와 커뮤니케이션에 관심 있는 학생"]),
   subject("g2-calculus-2", 2, "미적분Ⅱ", "수학", "진로 선택", graded, false, "미적분 개념을 심화해 자연·공학 계열 학습의 기반을 다지는 과목입니다.", ["미적분", "함수", "수학"], ["자연", "공학", "의약학"], ["수학 심화 학습이 필요한 진로를 희망하는 학생"], ["미적분Ⅰ"]),
   subject("g2-math-project", 2, "수학과제 탐구", "수학", "융합 선택", graded, false, "수학적 주제를 스스로 정하고 조사·분석·발표하는 탐구 중심 과목입니다.", ["수학탐구", "문제해결", "보고서"], ["자연", "공학", "상경", "사회"], ["수학 개념을 관심 분야 문제와 연결해 탐구하고 싶은 학생"]),
