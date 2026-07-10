@@ -53,8 +53,8 @@ export const admissionRecommendations: AdmissionRecommendation[] = [
     department: "국어교육과",
     track: "교육",
     coreSubjects: ["주제탐구독서", "매체 의사소통"],
-    recommendedSubjects: ["문학과 영상", "논술", "인간과 심리"],
-    note: "읽기·쓰기·매체 소통 역량과 학생 이해 역량을 함께 보여줄 수 있습니다.",
+    recommendedSubjects: ["독서 토론과 글쓰기", "문학과 영상", "논술", "인간과 심리"],
+    note: "읽기·토론·쓰기, 매체 소통 역량과 학생 이해 역량을 함께 보여줄 수 있습니다.",
   },
   {
     id: "hongik-design",
