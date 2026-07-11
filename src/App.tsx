@@ -17,7 +17,7 @@ import {
   X,
 } from "lucide-react";
 import { keywords, selectionTypes, subjectGroups, subjects, tracks } from "./data/subjects";
-import { admissionRecommendations, dreamDureSubjects, dreamDureTypes } from "./data/admissions";
+import { admissionNotices, admissionRecommendations, dreamDureSubjects, dreamDureTypes } from "./data/admissions";
 import type { Grade, SelectionType, SemesterAssignments, SemesterId, Subject, SubjectGroup, Track } from "./types";
 import {
   calculateCredits,
@@ -935,9 +935,22 @@ function MatchingView({
       <div className="match-panel">
         <h2>대학·학과별 권장과목 예시 매칭</h2>
         <p className="muted-text">
-          아래 자료는 사이트 기능을 보여주기 위한 상담 참고 예시입니다. 실제 지원 전에는 반드시 해당 대학 입학처의 최신
-          안내를 확인해야 합니다.
+          대학별 권장과목은 지원 자격이나 합격 보장이 아닙니다. 학생의 진로 탐색과 과목 선택을 돕기 위한 상담 참고 자료이며,
+          실제 지원 전에는 반드시 해당 대학 입학처의 최신 모집요강과 안내 자료를 확인해야 합니다.
         </p>
+        <div className="admission-notice-grid">
+          {admissionNotices.map((notice) => (
+            <article className="admission-notice-card" key={notice.id}>
+              <span>{notice.university}</span>
+              <strong>{notice.title}</strong>
+              <ul>
+                {notice.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
         <div className="recommendation-grid">
           {scoredRecommendations.map((item) => (
             <article className="recommendation-card" key={item.id}>
@@ -945,6 +958,19 @@ function MatchingView({
                 <span>{item.track}</span>
                 <strong>{item.university} {item.department}</strong>
               </div>
+              {(item.sourceLabel || item.sourceType) && (
+                <div className="recommendation-source">
+                  {item.sourceType && <span>{item.sourceType}</span>}
+                  {item.sourceUrl ? (
+                    <a href={item.sourceUrl} target="_blank" rel="noreferrer">
+                      {item.sourceLabel}
+                      <ExternalLink size={14} />
+                    </a>
+                  ) : (
+                    <small>{item.sourceLabel}</small>
+                  )}
+                </div>
+              )}
               <SubjectPills title="핵심 권장" names={item.coreSubjects} selectedNames={selectedNames} />
               <SubjectPills title="권장" names={item.recommendedSubjects} selectedNames={selectedNames} />
               <p>{item.note}</p>

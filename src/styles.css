@@ -1012,6 +1012,43 @@ p {
   text-align: left;
 }
 
+.admission-notice-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+  margin: 16px 0 18px;
+}
+
+.admission-notice-card {
+  border: 1px solid #e9d7bd;
+  border-radius: 12px;
+  padding: 16px;
+  background: #fff9ef;
+}
+
+.admission-notice-card span {
+  display: inline-flex;
+  width: fit-content;
+  border-radius: 999px;
+  padding: 5px 9px;
+  background: #f0dfc5;
+  color: #7b4b20;
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.admission-notice-card strong {
+  display: block;
+  margin: 10px 0 8px;
+  color: #2c332f;
+}
+
+.admission-notice-card ul {
+  margin: 0;
+  padding-left: 18px;
+  color: #5a4d3c;
+}
+
 .recommendation-grid,
 .dream-grid {
   display: grid;
@@ -1058,6 +1095,39 @@ p {
 
 .recommendation-head strong {
   font-size: 19px;
+}
+
+.recommendation-source {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin: -4px 0 12px;
+  color: #66736a;
+  font-size: 12px;
+}
+
+.recommendation-source span {
+  border-radius: 999px;
+  padding: 4px 8px;
+  background: #f3f7f8;
+  color: #154c54;
+  font-weight: 800;
+}
+
+.recommendation-source a,
+.recommendation-source small {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  color: #66736a;
+  font-size: 12px;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.recommendation-source a:hover {
+  color: #d76735;
 }
 
 .subject-pills {
